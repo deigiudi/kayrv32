@@ -1,0 +1,23 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheCTRL
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheD_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheI_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Core_RV32
+INFO: [VRFC 10-2458] undeclared symbol oPCADDR, assumed default net type wire [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipEX_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipID_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipIF_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipMA_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipWB_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TOP_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

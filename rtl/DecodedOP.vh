@@ -1,0 +1,90 @@
+/*
+ *  BenchRV32I -- A simple RISC-V (RV32I) Processor Core
+ *  Copyright (c) 2020, Alessandro Dei Giudici <alessandro.deig@live.it>
+ *  
+ *  A file containing definitions for decoded instruction to be performed
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ *  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ *  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ *  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   
+ *
+ */
+
+// SHIFTS
+`define SLL			6'b000000
+`define SLLI		6'b000001
+`define SRL			6'b000010
+`define SRLI		6'b000011
+`define SRA			6'b000100
+`define SRAI		6'b000101
+
+// ARITHMETIC
+`define ADD			6'b000110
+`define ADDI		6'b000111
+`define SUB			6'b001000
+`define LUI			6'b001001
+`define AUIPC		6'b001010
+
+// LOGICAL
+`define XOR			6'b001011
+`define XORI		6'b001100
+`define OR			6'b001101
+`define ORI			6'b001110
+`define AND			6'b001111
+`define ANDI		6'b010000
+
+// COMPARE
+`define SLT			6'b010001
+`define SLTI		6'b010010
+`define SLTU		6'b010011
+`define SLTIU		6'b010100
+
+// BRANCHES
+`define BEQ			6'b010101
+`define BNE			6'b010110
+`define BLT			6'b010111
+`define BGE			6'b011000
+`define BLTU		6'b011001
+`define BGEU		6'b011010
+
+// JUMP&LINK
+`define JAL			6'b011100
+`define JALR		6'b011101
+
+// SYNC
+//`define FENCE		6'b
+//`define FENCE.I		6'b
+
+// ENVIRONMENT
+//`define CALL			6'b
+//`define EBREAK		6'b
+
+// CONTROL STATUS REGISTER
+//`define CSRRW		6'b
+//`define CSRRS		6'b
+//`define CSRRC		6'b
+//`define CSRRWI		6'b
+//`define CSRRSI		6'b
+//`define CSRRCI		6'b
+
+// LOADS
+`define LB		6'b011110
+`define LH		6'b011111
+`define LBU		6'b100000
+`define LHU		6'b100001
+`define LW		6'b100010
+
+// STORE
+`define SB		6'b100011
+`define SH		6'b100100
+`define SW		6'b100101
+
+// NOT SUPPORTED
+`define NOTSUP	6'b111111

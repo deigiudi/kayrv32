@@ -1,0 +1,18 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../rtl" \
+"../../../../../rtl/CacheCTRL.v" \
+"../../../../../rtl/CacheD_RV32.v" \
+"../../../../../rtl/CacheI_RV32.v" \
+"../../../../../rtl/Core_RV32.v" \
+"../../../../../rtl/pipEX_RV32.v" \
+"../../../../../rtl/pipID_RV32.v" \
+"../../../../../rtl/pipIF_RV32.v" \
+"../../../../../rtl/pipMA_RV32.v" \
+"../../../../../rtl/pipWB_RV32.v" \
+"../../../../../rtl/TOP_RV32.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

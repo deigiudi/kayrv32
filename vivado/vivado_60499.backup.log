@@ -1,0 +1,1127 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Thu Mar 12 12:17:40 2020
+# Process ID: 60499
+# Current directory: /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado
+# Command line: vivado
+# Log file: /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/vivado.log
+# Journal file: /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/vivado.jou
+#-----------------------------------------------------------
+start_gui
+set_param board.repoPaths {/home/sashalag/.Xilinx/Vivado/2019.2/xhub/board_store}
+xhub::refresh_catalog [xhub::get_xstores xilinx_board_store]
+ERROR: [Common 17-1587] Failed to refresh catalog from github.com. Please check internet connection, git proxy settings and github.com site status.
+create_project BenchRV32 . -part xc7a50tcsg324-1
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2019.2/data/ip'.
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 6565.242 ; gain = 43.539 ; free physical = 114 ; free virtual = 2729
+add_files -norecurse /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/DecodedOP.vh
+add_files -norecurse {/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:]
+WARNING: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:]
+update_compile_order -fileset sources_1
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a50tcsg324-1
+Top: TOP_RV32
+INFO: [Device 21-403] Loading part xc7a50tcsg324-1
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:07 . Memory (MB): peak = 7620.176 ; gain = 201.609 ; free physical = 74 ; free virtual = 2268
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+ERROR: [Synth 8-448] named port connection 'oRW' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:58]
+ERROR: [Synth 8-448] named port connection 'oMEM' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:59]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+ERROR: [Synth 8-6156] failed synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 7681.926 ; gain = 263.359 ; free physical = 193 ; free virtual = 2310
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+10 Infos, 1 Warnings, 0 Critical Warnings and 6 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a50tcsg324-1
+Top: TOP_RV32
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 7749.969 ; gain = 0.000 ; free physical = 128 ; free virtual = 2264
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+ERROR: [Synth 8-448] named port connection 'oRW' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:58]
+ERROR: [Synth 8-448] named port connection 'oMEM' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:59]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+ERROR: [Synth 8-6156] failed synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 7749.969 ; gain = 0.000 ; free physical = 171 ; free virtual = 2307
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+9 Infos, 1 Warnings, 0 Critical Warnings and 6 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a50tcsg324-1
+Top: TOP_RV32
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 7797.992 ; gain = 0.000 ; free physical = 107 ; free virtual = 2164
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+ERROR: [Synth 8-448] named port connection 'iRW' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:61]
+ERROR: [Synth 8-448] named port connection 'iMEM' does not exist for instance 'CacheD' of module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:62]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-6156] failed synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+ERROR: [Synth 8-6156] failed synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 7797.992 ; gain = 0.000 ; free physical = 165 ; free virtual = 2206
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+9 Infos, 1 Warnings, 0 Critical Warnings and 6 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a50tcsg324-1
+Top: TOP_RV32
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 7806.953 ; gain = 2.961 ; free physical = 83 ; free virtual = 2108
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+ERROR: [Synth 8-448] named port connection 'iStallI' does not exist for instance 'pipIF' of module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:66]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'idu_RegBANK' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:62]
+ERROR: [Synth 8-6156] failed synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+ERROR: [Synth 8-6156] failed synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+ERROR: [Synth 8-6156] failed synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 7806.953 ; gain = 2.961 ; free physical = 162 ; free virtual = 2149
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+11 Infos, 2 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a50tcsg324-1
+Top: TOP_RV32
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 7932.949 ; gain = 5.930 ; free physical = 171 ; free virtual = 2160
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'pipID_RV32' (5#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:91]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:94]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:101]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:104]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:108]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:111]
+WARNING: [Synth 8-3848] Net oDregADDR in module/entity pipEX_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'pipEX_RV32' (6#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-689] width (32) of port connection 'oBRANCHADDR' does not match port width (30) of module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+INFO: [Synth 8-6157] synthesizing module 'pipMA_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipMA_RV32' (7#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipWB_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipWB_RV32' (8#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+WARNING: [Synth 8-3848] Net oMEMADDR in module/entity Core_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:26]
+INFO: [Synth 8-6155] done synthesizing module 'Core_RV32' (9#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+WARNING: [Synth 8-7023] instance 'Core' of module 'Core_RV32' has 10 connections declared, but only 9 given [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:66]
+WARNING: [Synth 8-3848] Net oGPIO_OUT in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:23]
+WARNING: [Synth 8-3848] Net oUART_TX in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:25]
+WARNING: [Synth 8-3848] Net MEMADDR in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_RV32' (10#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-3331] design pipWB_RV32 has unconnected port iCLK
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iRW
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iMEM
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[0]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[0]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[31]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oMEMADDR[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iMEMDATA[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iStallD
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[13]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[12]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 7932.949 ; gain = 5.930 ; free physical = 207 ; free virtual = 2197
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 7932.949 ; gain = 5.930 ; free physical = 201 ; free virtual = 2193
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 7932.949 ; gain = 5.930 ; free physical = 201 ; free virtual = 2193
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 7932.949 ; gain = 0.000 ; free physical = 191 ; free virtual = 2185
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 8052.676 ; gain = 0.000 ; free physical = 98 ; free virtual = 2112
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 8071.312 ; gain = 144.293 ; free physical = 85 ; free virtual = 2044
+24 Infos, 114 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 8071.312 ; gain = 144.293 ; free physical = 85 ; free virtual = 2045
+refresh_design
+ERROR: [Synth 8-1031] oPCADDR is not declared [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:54]
+INFO: [Synth 8-2350] module pipID_RV32 ignored due to previous errors [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+Failed to read verilog '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v'
+refresh_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 8158.559 ; gain = 0.000 ; free physical = 127 ; free virtual = 1847
+ERROR: [Common 17-39] 'refresh_design' failed due to earlier errors.
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 8174.566 ; gain = 0.000 ; free physical = 75 ; free virtual = 1796
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+WARNING: [Synth 8-689] width (1) of port connection 'oPCADDR' does not match port width (32) of module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'pipID_RV32' (5#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:91]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:94]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:101]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:104]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:108]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:111]
+WARNING: [Synth 8-3848] Net oDregADDR in module/entity pipEX_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'pipEX_RV32' (6#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-689] width (32) of port connection 'oBRANCHADDR' does not match port width (30) of module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+WARNING: [Synth 8-6104] Input port 'iMEMDATA' has an internal driver [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:93]
+INFO: [Synth 8-6157] synthesizing module 'pipMA_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipMA_RV32' (7#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipWB_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipWB_RV32' (8#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+WARNING: [Synth 8-3848] Net oCacheADDR in module/entity Core_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'Core_RV32' (9#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+WARNING: [Synth 8-3848] Net oGPIO_OUT in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:23]
+WARNING: [Synth 8-3848] Net oUART_TX in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_RV32' (10#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-3331] design pipWB_RV32 has unconnected port iCLK
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iRW
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iMEM
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[0]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[0]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[31]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iStallD
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[13]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[12]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[11]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[10]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[9]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[8]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[7]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[6]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[5]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[4]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[3]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[2]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[1]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[0]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oUART_TX
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[13]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8200.559 ; gain = 25.992 ; free physical = 174 ; free virtual = 1834
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8215.402 ; gain = 40.836 ; free physical = 176 ; free virtual = 1839
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8215.402 ; gain = 40.836 ; free physical = 176 ; free virtual = 1839
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 8218.371 ; gain = 0.000 ; free physical = 207 ; free virtual = 1903
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 8314.188 ; gain = 139.621 ; free physical = 146 ; free virtual = 1882
+write_schematic -format pdf -orientation portrait /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/schematic.pdf
+WARNING: [Vivado 12-3279] write_schematic failed. Parent directory for  '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/schematic.pdf'  not found.
+write_schematic -format pdf -orientation landscape /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/schematic.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/schematic.pdf
+write_schematic -format pdf -orientation portrait /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/schematic.pdf
+WARNING: [Vivado 12-3279] write_schematic failed. Parent directory for  '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/schematic.pdf'  not found.
+write_schematic -format pdf -orientation portrait /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+write_schematic -format pdf -orientation portrait /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
+write_schematic -format pdf -orientation portrait /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/inside.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/inside.pdf
+write_schematic -format pdf -orientation landscape /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/inside.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/inside.pdf
+write_schematic -format pdf -orientation landscape /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
+write_schematic -format pdf -orientation landscape /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 8539.820 ; gain = 0.000 ; free physical = 76 ; free virtual = 1750
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+WARNING: [Synth 8-689] width (1) of port connection 'oPCADDR' does not match port width (32) of module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'pipID_RV32' (5#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:91]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:94]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:101]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:104]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:108]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:111]
+WARNING: [Synth 8-3848] Net oDregADDR in module/entity pipEX_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'pipEX_RV32' (6#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-689] width (32) of port connection 'oBRANCHADDR' does not match port width (30) of module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+WARNING: [Synth 8-6104] Input port 'iMEMDATA' has an internal driver [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:93]
+INFO: [Synth 8-6157] synthesizing module 'pipMA_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipMA_RV32' (7#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipWB_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipWB_RV32' (8#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+WARNING: [Synth 8-3848] Net oCacheADDR in module/entity Core_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'Core_RV32' (9#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+WARNING: [Synth 8-3848] Net oGPIO_OUT in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:23]
+WARNING: [Synth 8-3848] Net oUART_TX in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_RV32' (10#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-3331] design pipWB_RV32 has unconnected port iCLK
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iRW
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iMEM
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[0]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[0]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[31]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iStallD
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[13]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[12]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[11]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[10]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[9]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[8]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[7]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[6]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[5]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[4]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[3]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[2]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[1]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[0]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oUART_TX
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[13]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8539.820 ; gain = 0.000 ; free physical = 176 ; free virtual = 1785
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8539.820 ; gain = 0.000 ; free physical = 180 ; free virtual = 1790
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8539.820 ; gain = 0.000 ; free physical = 180 ; free virtual = 1790
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 8539.820 ; gain = 0.000 ; free physical = 325 ; free virtual = 1938
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 8567.668 ; gain = 27.848 ; free physical = 220 ; free virtual = 1858
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 8575.680 ; gain = 0.000 ; free physical = 118 ; free virtual = 1761
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+WARNING: [Synth 8-689] width (1) of port connection 'oPCADDR' does not match port width (32) of module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'pipID_RV32' (5#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:91]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:94]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:101]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:104]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:108]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:111]
+WARNING: [Synth 8-3848] Net oDregADDR in module/entity pipEX_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'pipEX_RV32' (6#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-689] width (32) of port connection 'oBRANCHADDR' does not match port width (30) of module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+WARNING: [Synth 8-6104] Input port 'iMEMDATA' has an internal driver [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:93]
+INFO: [Synth 8-6157] synthesizing module 'pipMA_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipMA_RV32' (7#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipWB_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipWB_RV32' (8#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+WARNING: [Synth 8-3848] Net oCacheADDR in module/entity Core_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'Core_RV32' (9#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+WARNING: [Synth 8-3848] Net oGPIO_OUT in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:23]
+WARNING: [Synth 8-3848] Net oUART_TX in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_RV32' (10#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-3331] design pipWB_RV32 has unconnected port iCLK
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iRW
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iMEM
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[0]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[0]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[31]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iStallD
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[13]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[12]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[11]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[10]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[9]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[8]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[7]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[6]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[5]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[4]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[3]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[2]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[1]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[0]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oUART_TX
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[13]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 8575.680 ; gain = 0.000 ; free physical = 167 ; free virtual = 1796
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 8575.680 ; gain = 0.000 ; free physical = 168 ; free virtual = 1797
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 8575.680 ; gain = 0.000 ; free physical = 167 ; free virtual = 1797
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 8575.680 ; gain = 0.000 ; free physical = 280 ; free virtual = 1910
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 8607.559 ; gain = 31.879 ; free physical = 215 ; free virtual = 1846
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 8631.578 ; gain = 0.000 ; free physical = 117 ; free virtual = 1748
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'TOP_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:43]
+INFO: [Synth 8-6157] synthesizing module 'CacheCTRL' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheCTRL' (1#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheI_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheI_RV32' (2#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'CacheD_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'CacheD_RV32' (3#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'Core_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipIF_RV32' (4#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v:20]
+WARNING: [Synth 8-689] width (1) of port connection 'oPCADDR' does not match port width (32) of module 'pipIF_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [Synth 8-6157] synthesizing module 'pipID_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'pipID_RV32' (5#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v:22]
+INFO: [Synth 8-6157] synthesizing module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:91]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:94]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:101]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:104]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:108]
+WARNING: [Synth 8-6090] variable 'oINVALID' is written by both blocking and non-blocking assignments, entire logic could be removed [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:111]
+WARNING: [Synth 8-3848] Net oDregADDR in module/entity pipEX_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:30]
+INFO: [Synth 8-6155] done synthesizing module 'pipEX_RV32' (6#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v:22]
+WARNING: [Synth 8-689] width (32) of port connection 'oBRANCHADDR' does not match port width (30) of module 'pipEX_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+WARNING: [Synth 8-6104] Input port 'iMEMDATA' has an internal driver [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:93]
+INFO: [Synth 8-6157] synthesizing module 'pipMA_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipMA_RV32' (7#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v:20]
+INFO: [Synth 8-6157] synthesizing module 'pipWB_RV32' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+INFO: [Synth 8-6155] done synthesizing module 'pipWB_RV32' (8#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v:20]
+WARNING: [Synth 8-3848] Net oCacheADDR in module/entity Core_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'Core_RV32' (9#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:22]
+WARNING: [Synth 8-3848] Net oGPIO_OUT in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:23]
+WARNING: [Synth 8-3848] Net oUART_TX in module/entity TOP_RV32 does not have driver. [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'TOP_RV32' (10#1) [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v:22]
+WARNING: [Synth 8-3331] design pipWB_RV32 has unconnected port iCLK
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iRW
+WARNING: [Synth 8-3331] design pipMA_RV32 has unconnected port iMEM
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port oDregADDR[0]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[4]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[3]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[2]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[1]
+WARNING: [Synth 8-3331] design pipEX_RV32 has unconnected port iDregADDR[0]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[31]
+WARNING: [Synth 8-3331] design pipIF_RV32 has unconnected port iBranchADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[31]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[30]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[29]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[28]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[27]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[26]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[25]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[24]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[23]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[22]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[21]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[20]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[19]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[18]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[17]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[16]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[15]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[14]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[13]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[12]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[11]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[10]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[9]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[8]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[7]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[6]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[5]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[4]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[3]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[2]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[1]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port oCacheADDR[0]
+WARNING: [Synth 8-3331] design Core_RV32 has unconnected port iStallD
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[13]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[12]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[11]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[10]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[9]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[8]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[7]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[6]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[5]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[4]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[3]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[2]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[1]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oGPIO_OUT[0]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port oUART_TX
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[31]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[30]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[29]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[28]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[27]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[26]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[25]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[24]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[23]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[22]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[21]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[20]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[19]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[18]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[17]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[16]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[15]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[14]
+WARNING: [Synth 8-3331] design TOP_RV32 has unconnected port iGPIO_IN[13]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8631.578 ; gain = 0.000 ; free physical = 178 ; free virtual = 1785
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8631.578 ; gain = 0.000 ; free physical = 178 ; free virtual = 1786
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 8631.578 ; gain = 0.000 ; free physical = 178 ; free virtual = 1786
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.02 . Memory (MB): peak = 8631.578 ; gain = 0.000 ; free physical = 304 ; free virtual = 1912
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 8634.570 ; gain = 2.992 ; free physical = 230 ; free virtual = 1840
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'TOP_RV32' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim'
+xvlog --incr --relax -prj TOP_RV32_vlog.prj
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheCTRL
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheD_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module CacheI_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Core_RV32
+INFO: [VRFC 10-2458] undeclared symbol oPCADDR, assumed default net type wire [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipEX_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipEX_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipID_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipID_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipIF_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipIF_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipMA_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipMA_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/pipWB_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pipWB_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/TOP_RV32.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TOP_RV32
+INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim'
+xelab -wto 3bc1b56345364b0f80b20e59d8e0f703 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TOP_RV32_behav xil_defaultlib.TOP_RV32 xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: /tools/Xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 3bc1b56345364b0f80b20e59d8e0f703 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TOP_RV32_behav xil_defaultlib.TOP_RV32 xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'oPCADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'iPCADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:80]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 30 for port 'oBRANCHADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v" Line 20. Module CacheCTRL doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v" Line 20. Module CacheI_RV32 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v" Line 20. Module CacheD_RV32 doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.CacheCTRL
+Compiling module xil_defaultlib.CacheI_RV32
+Compiling module xil_defaultlib.CacheD_RV32
+Compiling module xil_defaultlib.pipIF_RV32
+Compiling module xil_defaultlib.pipID_RV32
+Compiling module xil_defaultlib.pipEX_RV32
+Compiling module xil_defaultlib.pipMA_RV32
+Compiling module xil_defaultlib.pipWB_RV32
+Compiling module xil_defaultlib.Core_RV32
+Compiling module xil_defaultlib.TOP_RV32
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot TOP_RV32_behav
+
+****** Webtalk v2019.2 (64-bit)
+  **** SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+  **** IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim/xsim.dir/TOP_RV32_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Thu Mar 12 17:49:46 2020...
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/vivado/BenchRV32.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "TOP_RV32_behav -key {Behavioral:sim_1:Functional:TOP_RV32} -tclbatch {TOP_RV32.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+source TOP_RV32.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'TOP_RV32_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 8706.379 ; gain = 71.789 ; free physical = 76 ; free virtual = 1688
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 12 17:50:18 2020...
