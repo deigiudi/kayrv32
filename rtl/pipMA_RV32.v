@@ -20,6 +20,7 @@
 module pipMA_RV32 (	
 	output reg [4:0]  oDregADDR,	// ADDR OUT Destination Register	
 	output reg [31:0] oDregDATA,	// DATA OUT Destination Register
+	input  [9:0]  iDecodedOP,			// Operation to be performed	
 	input  [4:0]  iDregADDR,		// ADDR IN Destination Register	
 	input  [31:0] iDregDATA,		// DATA IN Destination Register
 	input  iStallD,					// DCache hasn't got data needed or Bubble in pipeline
@@ -43,17 +44,17 @@ module pipMA_RV32 (
 						1'b1 : 
 							if (!iStallD) begin
 								case (iDecodedOP)
-									`LB	 :	oDregDATA <= ;
-									`LH	 : oDregDATA <= ;
-									`LBU	 : oDregDATA <= ;
-									`LHU	 : oDregDATA <= ;
-									`LW	 : oDregDATA <= ;
+									`LB	 :	oDregDATA <= 32'dX;
+									`LH	 : oDregDATA <= 32'dX;
+									`LBU	 : oDregDATA <= 32'dX;
+									`LHU	 : oDregDATA <= 32'dX;
+									`LW	 : oDregDATA <= 32'dX;
 									default: oDregDATA <= 32'dX;
 									endcase
 							end else begin
 							
 							end						
-						1'b0 : 
+						1'b0 : oDregDATA <= 32'dX;
 						endcase
  				1'b0 :	/* Passthrough logic */
 					oDregDATA <= iDregDATA;

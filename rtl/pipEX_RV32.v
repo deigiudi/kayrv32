@@ -28,14 +28,15 @@ module pipEX_RV32 (
 	output reg [31:0] oMEMADDR,		// ADDR OUT Memory		
 	output reg [31:0] oDregDATA,		// DATA OUT Destination Register
 	output reg [4:0]  oDregADDR,		// ADDR OUT Destination Register
-	output reg [1:0]  oINVALID,		// 10 = istruction not aligned, 01 = invalid instruction 	
+	output reg [9:0]  oDecodedOP,		// One-Hot  Encoding Type Group to MEM
+	output reg [1:0]  oINVALID,		// 10 = istruction not aligned, 01 = invalid instruction
 	input [31:0] iAregDATA,				// DATA IN A register
 	input [31:0] iBregDATA,				// DATA IN B register
 	input [31:0] iIMMDATA,				// DATA IN Immediate
 	input [31:0] iPCADDR,				// ADDR IN PC
 	input [4:0]  iDregADDR,				// ADDR IN D register
 	input [5:0]  iOpType,				// One-Hot Encoding Operation Group
-	input [5:0]  iDecodedOP,			// Operation to be performed
+	input [9:0]  iDecodedOP,			// One-Hot Encoding Type Group from FETCH
 	input iINSTRAligned,					// Instruction is aligned?
 	input iCLK,
 	input iRST

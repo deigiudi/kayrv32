@@ -24,8 +24,8 @@ module pipID_RV32 (
 	output reg [31:0] oBregDATA,	// DATA OUT B Register
 	output reg [31:0] oIMMDATA,	// DATA OUT Immediate
 	output reg [31:0] oPCADDR,	// ADDR OUT PC
-	output reg [5:0]  oDecodedOP,	// Mixed Encoding Operation Type
 	output reg [5:0]  oOpType,		// One-Hot Encoding Operation Group
+	output reg [9:0]  oDecodedOP,	// Mixed Encoding Operation Type
 	output reg [4:0]  oDregADDR,	// ADDR D Register		
 	output reg oINSTRAligned,			// Instruction is aligned?
 	input [31:0] iPCADDR,			// PC Address

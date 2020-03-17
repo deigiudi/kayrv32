@@ -45,7 +45,9 @@ CacheCTRL CacheCTRL (
 	.iRST(iRST)
 	);
 
-CacheI_RV32 CacheI (	
+CacheI_RV32 #(
+	.MEMSIZE(4)
+	) CacheI (	
 	.oStallI(ICacheStall),	// iCache hasn't got data needed
 	.oPCDATA(PCDATA),			// DATA OUT Destination Register
 	.iPCADDR(PCADDR),			// ADDR IN Destination Register
@@ -53,9 +55,11 @@ CacheI_RV32 CacheI (
 	.iRST(iRST)
 	);
 	
-CacheD_RV32 CacheD (
+CacheD_RV32 #(
+	.MEMSIZE(4)
+	) CacheD (
 	.oStallD(DCacheStall),	// DCache hasn't got data needed
-	.oMEMDATA(MEMDATA),		// DATA OUT Memory
+	.ioMEMDATA(MEMDATA),		// DATA OUT Memory
 	.iMEMADDR(MEMADDR),		// ADDR IN MEMORY
 	.iRW(RW),					// 1 = Read, 0 = Write
 	.iMEM(MEM),					// There is a memory transaction to be performed		

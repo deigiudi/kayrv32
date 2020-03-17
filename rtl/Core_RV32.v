@@ -42,8 +42,8 @@ wire [31:0] BregDATA;
 wire [31:0] IMMDATA;
 wire [31:0] PCADDR;
 wire  [4:0] DregADDRint1;
-wire	[5:0] DecodedOP;
 wire  [5:0] OpType;
+wire	[9:0] DecodedOP;
 wire INSTRAligned;
 
 // ID <=> WB
@@ -53,6 +53,7 @@ wire  [4:0] DregADDR;
 // EX <=> MA
 wire [31:0] DregDATA1;
 wire  [4:0] DregADDRint2;
+wire	[9:0] DecodedOPMEM;
 
 // MA <= WB
 wire [31:0] DregDATA2;
@@ -96,6 +97,7 @@ pipEX_RV32 pipEX (
 	.oDregDATA(DregDATA1),			// DATA OUT Destination Register	
 	.oDregADDR(DregADDRint2),		// ADDR OUT Destination Register
 	.oINVALID(),						// 10 = istruction not aligned, 01 = invalid instruction
+	.oDecodedOP(DecodedOPMEM),		// Operation to be performed	
 	.iAregDATA(AregDATA),			// DATA IN A register
 	.iBregDATA(BregDATA),			// DATA IN B register
 	.iIMMDATA(IMMDATA),				// DATA IN Immediate
@@ -111,6 +113,7 @@ pipEX_RV32 pipEX (
 pipMA_RV32 pipMA (
 	.oDregADDR(DregADDRint3),		// ADDR OUT Destination Register	
 	.oDregDATA(DregDATA2),			// DATA OUT Destination Register
+	.iDecodedOP(DecodedOPMEM),			// Operation to be performed	
 	.iDregADDR(DregADDRint2),		// ADDR IN Destination Register
 	.iDregDATA(DregDATA1),			// DATA IN Destination Register
 	.iRW(oRW),							// 1 = Read, 0 = Write

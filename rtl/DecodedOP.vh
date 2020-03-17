@@ -17,74 +17,69 @@
  *
  */
 
-// SHIFTS
-`define SLL			6'b000000
-`define SLLI		6'b000001
-`define SRL			6'b000010
-`define SRLI		6'b000011
-`define SRA			6'b000100
-`define SRAI		6'b000101
-
-// ARITHMETIC
-`define ADD			6'b000110
-`define ADDI		6'b000111
-`define SUB			6'b001000
-`define LUI			6'b001001
-`define AUIPC		6'b001010
-
-// LOGICAL
-`define XOR			6'b001011
-`define XORI		6'b001100
-`define OR			6'b001101
-`define ORI			6'b001110
-`define AND			6'b001111
-`define ANDI		6'b010000
-
-// COMPARE
-`define SLT			6'b010001
-`define SLTI		6'b010010
-`define SLTU		6'b010011
-`define SLTIU		6'b010100
-
-// BRANCHES
-`define BEQ			6'b010101
-`define BNE			6'b010110
-`define BLT			6'b010111
-`define BGE			6'b011000
-`define BLTU		6'b011001
-`define BGEU		6'b011010
-
-// JUMP&LINK
-`define JAL			6'b011100
-`define JALR		6'b011101
-
-// SYNC
-//`define FENCE		6'b
-//`define FENCE.I		6'b
-
-// ENVIRONMENT
-//`define CALL			6'b
-//`define EBREAK		6'b
-
-// CONTROL STATUS REGISTER
-//`define CSRRW		6'b
-//`define CSRRS		6'b
-//`define CSRRC		6'b
-//`define CSRRWI		6'b
-//`define CSRRSI		6'b
-//`define CSRRCI		6'b
-
 // LOADS
-`define LB		6'b011110
-`define LH		6'b011111
-`define LBU		6'b100000
-`define LHU		6'b100001
-`define LW		6'b100010
+`define LB		10'b0000000001
+`define LH		10'b0000000010
+`define LBU		10'b0000000100
+`define LHU		10'b0000001000
+`define LW		10'b0000010000
 
 // STORE
-`define SB		6'b100011
-`define SH		6'b100100
-`define SW		6'b100101
+`define SB		10'b0000000001
+`define SH		10'b0000000010
+`define SW		10'b0000000100
+
+// IMMEDIATE
+`define ADDI	10'b0000000001
+`define SLLI	10'b0000000010
+`define SLTI	10'b0000000100
+`define SLTIU	10'b0000001000
+`define XORI	10'b0000010000
+`define SRLI	10'b0000100000
+`define SRAI	10'b0001000000
+`define ORI		10'b0010000000
+`define ANDI	10'b0100000000
+
+// REGISTER
+`define ADD		10'b0000000001
+`define SUB		10'b0000000010
+`define SLL		10'b0000000100
+`define SLT		10'b0000001000
+`define SLTU	10'b0000010000
+`define XOR		10'b0000100000
+`define SRL		10'b0001000000
+`define SRA		10'b0010000000
+`define OR		10'b0100000000
+`define AND		10'b1000000000
+// BRANCHES
+`define BEQ		10'b0000000001
+`define BNE		10'b0000000010
+`define BLT		10'b0000000100
+`define BGE		10'b0000001000
+`define BLTU	10'b0000010000
+`define BGEU	10'b0000100000
+
+// MIXED
+`define AUIPC	10'b0000000001
+`define LUI		10'b0000000010
+`define JAL		10'b0000000100
+`define JALR	10'b0000001000
+
+// SYNC
+//`define FENCE		10'b
+//`define FENCE.I		10'b
+
+// ENVIRONMENT
+//`define CALL			10'b
+//`define EBREAK		10'b
+
+// CONTROL STATUS REGISTER
+//`define CSRRW		10'b
+//`define CSRRS		10'b
+//`define CSRRC		10'b
+//`define CSRRWI		10'b
+//`define CSRRSI		10'b
+//`define CSRRCI		10'b
 
 // NOT SUPPORTED
-`define NOTSUP	6'b111111
+`define NOTSUP	10'b0000000000
