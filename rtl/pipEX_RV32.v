@@ -17,6 +17,7 @@
  *
  */
  
+ `timescale 1ns / 1ps
 `include "DecodedOP.vh"
 
 module pipEX_RV32 (
@@ -28,7 +29,7 @@ module pipEX_RV32 (
 	output reg [31:0] oMEMADDR,		// ADDR OUT Memory		
 	output reg [31:0] oDregDATA,		// DATA OUT Destination Register
 	output reg [4:0]  oDregADDR,		// ADDR OUT Destination Register
-	output reg [9:0]  oDecodedOP,		// One-Hot  Encoding Type Group to MEM
+	output reg [4:0]  oDecodedOP,		// One-Hot  Encoding Type Group to MEM
 	output reg [1:0]  oINVALID,		// 10 = istruction not aligned, 01 = invalid instruction
 	input [31:0] iAregDATA,				// DATA IN A register
 	input [31:0] iBregDATA,				// DATA IN B register
@@ -50,6 +51,7 @@ module pipEX_RV32 (
 				oBRANCH <= 1'b0;
 			end
 		else begin
+			oDecodedOP <= iDecodedOP[4:0];
 			oINVALID[0] <= (iINSTRAligned)? 1'b1 : 1'b0;
 			case (iOpType)
 				6'b100000:	// Load Instruction Group

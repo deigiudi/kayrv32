@@ -35,41 +35,47 @@ wire ICacheStall;
 
 // DCache <=> Core
 wire RW;
-wire MEM;
 wire DCacheStall;
 wire [31:0] MEMADDR;
 wire [31:0] MEMDATA;
 
-CacheCTRL CacheCTRL (	
+CacheCTRL #(	
+	.Nbit(128),			// number of bit to serialize
+	.CLK_DIV(100)		// oCLK = iCLK/(2*CLK_DIV)
+	) CacheCTRL (
+	.oDATApar(),		// DATA read from memory
+	.oTXend(),			// TX data completed, iDATApar available
+	.oCLK(),
+	.oSS(),
+	.oMOSI(),
+	.iDATApar(),		// DATA write to memory
+	.iTXstart(),		// start TX on serial line
+	.iMISO(),
 	.iCLK(iCLK),
 	.iRST(iRST)
 	);
 
 CacheI_RV32 #(
-	.MEMSIZE(4)
+	.MEMSIZE(8)
 	) CacheI (	
 	.oStallI(ICacheStall),	// iCache hasn't got data needed
 	.oPCDATA(PCDATA),			// DATA OUT Destination Register
 	.iPCADDR(PCADDR),			// ADDR IN Destination Register
-	.iCLK(iCLK),
-	.iRST(iRST)
+	.iCLK(iCLK)
 	);
 	
 CacheD_RV32 #(
-	.MEMSIZE(4)
+	.MEMSIZE(8)
 	) CacheD (
 	.oStallD(DCacheStall),	// DCache hasn't got data needed
 	.ioMEMDATA(MEMDATA),		// DATA OUT Memory
 	.iMEMADDR(MEMADDR),		// ADDR IN MEMORY
 	.iRW(RW),					// 1 = Read, 0 = Write
-	.iMEM(MEM),					// There is a memory transaction to be performed		
-	.iCLK(iCLK),
-	.iRST(iRST)
+	.iCLK(iCLK)
 	);
 	
 Core_RV32 Core (
 	.oRW(RW),					// 1 = Read, 0 = Write
-	.oMEM(MEM),					// There is a memory transaction to be performed	
 	.oCacheADDR(PCADDR),		// Data Address to read from ICache
 	.oMEMADDR(MEMADDR),		// ADDR OUT Memory
 	.iCacheDATA(PCDATA),		// Instruction from ICache	

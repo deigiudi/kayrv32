@@ -17,6 +17,7 @@
  *
  */
 
+`timescale 1ns / 1ps
 `include "DecodedOP.vh"
 
 module pipID_RV32 (

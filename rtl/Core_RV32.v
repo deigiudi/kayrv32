@@ -21,7 +21,6 @@
 
 module Core_RV32 (
 	output oRW,						// 1 = Read, 0 = Write
-	output oMEM,					// There is a memory transaction to be performed	
 	output [31:0] oCacheADDR,	// Data Address to read from ICache
 	output [31:0] oMEMADDR,		// ADDR OUT Memory	
 	input  [31:0] iMEMDATA,		// DATA IN Memory
@@ -53,7 +52,8 @@ wire  [4:0] DregADDR;
 // EX <=> MA
 wire [31:0] DregDATA1;
 wire  [4:0] DregADDRint2;
-wire	[9:0] DecodedOPMEM;
+wire	[4:0] DecodedOPMEM;
+wire MEM;
 
 // MA <= WB
 wire [31:0] DregDATA2;
@@ -89,7 +89,7 @@ pipID_RV32 pipID (
 
 pipEX_RV32 pipEX (
 	.oRW(oRW),							// 1 = Read, 0 = Write
-	.oMEM(oMEM),						// There is a memory transaction to be performed
+	.oMEM(MEM),						// There is a memory transaction to be performed
 	.oBRANCH(ItsBRANCH),				// There is a Branch to be taken
 	.oBRANCHADDR(BranchADDR),		// Target Address for Program Counter	
 	.oMEMDATA(iMEMDATA),				// DATA OUT Memory
@@ -117,7 +117,7 @@ pipMA_RV32 pipMA (
 	.iDregADDR(DregADDRint2),		// ADDR IN Destination Register
 	.iDregDATA(DregDATA1),			// DATA IN Destination Register
 	.iRW(oRW),							// 1 = Read, 0 = Write
-	.iMEM(oMEM),			 			// There is a memory transaction to be performed
+	.iMEM(MEM),			 			// There is a memory transaction to be performed
 	.iCLK(iCLK),
 	.iRST(iRST)
 );

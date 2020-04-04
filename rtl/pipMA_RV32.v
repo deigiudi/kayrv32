@@ -16,11 +16,14 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   
  *
  */
+
+`timescale 1ns / 1ps
+`include "DecodedOP.vh"
  
 module pipMA_RV32 (	
 	output reg [4:0]  oDregADDR,	// ADDR OUT Destination Register	
 	output reg [31:0] oDregDATA,	// DATA OUT Destination Register
-	input  [9:0]  iDecodedOP,			// Operation to be performed	
+	input  [4:0]  iDecodedOP,		// Operation to be performed	
 	input  [4:0]  iDregADDR,		// ADDR IN Destination Register	
 	input  [31:0] iDregDATA,		// DATA IN Destination Register
 	input  iStallD,					// DCache hasn't got data needed or Bubble in pipeline
@@ -52,7 +55,7 @@ module pipMA_RV32 (
 									default: oDregDATA <= 32'dX;
 									endcase
 							end else begin
-							
+								oDregDATA <= 32'dX;
 							end						
 						1'b0 : oDregDATA <= 32'dX;
 						endcase
@@ -60,6 +63,6 @@ module pipMA_RV32 (
 					oDregDATA <= iDregDATA;
 				endcase
 			end
-	end
+		end
 	
 endmodule

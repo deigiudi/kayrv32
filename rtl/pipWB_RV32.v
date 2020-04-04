@@ -17,6 +17,8 @@
  *
  */
  
+`timescale 1ns / 1ps 
+ 
 module pipWB_RV32 (	
 	output [4:0]  oDregADDR,	// ADDR OUT Destination Register	
 	output [31:0] oDregDATA,	// DATA OUT Destination Register

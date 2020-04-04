@@ -16,6 +16,8 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   
  *
  */
+
+`timescale 1ns / 1ps
  
 module CacheD_RV32 #(
 	parameter MEMSIZE = 8
@@ -24,9 +26,7 @@ module CacheD_RV32 #(
 	inout  [31:0] ioMEMDATA,		// MEMORY DATA OUT	
 	input  [31:0] iMEMADDR,			// MEMORY ADDR IN
 	input  iRW,							// 1 = Read, 0 = Write
-	input  iMEM,						// There is a memory transaction to be performed		
-	input  iCLK,
-	input  iRST
+	input  iCLK
 	);
 	
 	reg [31:0] dCache[0:MEMSIZE-1]; 	// X words of 32-bit cache
@@ -34,25 +34,25 @@ module CacheD_RV32 #(
 	integer i;
 	
 	assign ioMEMDATA = MEMDATA;
+
+	/* Start configuration */
+	initial begin
+		oStallD	<= 1'b0;
+		MEMDATA <= 32'd0;
+		for (i = 0; i < MEMSIZE; i = i + 1) begin
+			dCache[i] = 32'd0;
+			end
+	end 
 	
 	/* dCache logic */
 	always @(posedge iCLK)
 	begin
-		if (iRST) begin
-			oStallD	<= 1'b0;
-			MEMDATA <= 32'd0;
-			for (i = 0; i < MEMSIZE; i = i + 1) begin
-				dCache[i] = 32'd0;
-				end
-		   end 
-		else begin
-			case (iRW)
-				1'b0 :
-					dCache[iMEMADDR] <= ioMEMDATA;
-				1'b1 :
-					MEMDATA <= dCache[iMEMADDR];
-		  		endcase	
-		   end
-	   end	
+		case (iRW)
+			1'b0 :
+				dCache[iMEMADDR] <= ioMEMDATA;
+			1'b1 :
+				MEMDATA <= dCache[iMEMADDR];
+			endcase	
+	end	
 	
 endmodule

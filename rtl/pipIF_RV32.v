@@ -17,6 +17,8 @@
  *
  */
 
+`timescale 1ns / 1ps
+
 module pipIF_RV32 (
 	output reg [31:0] oPCADDR,	// Data Address to read from ICache
 	input  [31:0] iBranchADDR,	// Branch Address	to be jumped in
@@ -51,6 +53,6 @@ module pipIF_RV32 (
 			endcase					
 			oPCADDR = { reg_PC, 2'b00 };	
 		   end
-	   end
+	end
  
 endmodule

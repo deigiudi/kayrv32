@@ -34,7 +34,6 @@ set rt::rc [catch {
     set rt::useElabCache false
     if {$rt::useElabCache == false} {
       rt::read_verilog -include /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl {
-      /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v
       /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v
       /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v
       /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v
