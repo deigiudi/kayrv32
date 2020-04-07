@@ -6,6 +6,5 @@ Verification will be performed using already available open-source verification 
 
 # TO DO:
   - Bypassing Unit in Execution Stage module,
-  - Full Branch Controller
-  - Cache controller
-  - Istruction & Data Cache
+  - Complete the simple Branch Controller
+  - Cache controller & Istruction & Data Cache
