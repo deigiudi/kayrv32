@@ -23,18 +23,21 @@ module CacheI_RV32 #(
 	parameter  MEMSIZE = 8
 	)(		
 	output reg oStallI,			// iCache hasn't got data needed
-	output reg [31:0] oPCDATA,	// DATA OUT Destination Register
-	input  [31:0] iPCADDR,		// ADDR IN Destination Register
-	input  iCLK
+	inout [31:0] ioINSTDATA,	// DATA OUT Destination Register	
+	input [31:0] iINSTADDR,		// ADDR IN Destination Register
+	input iCLK
 	);
 	
 	reg [31:0] iCache[0:MEMSIZE-1]; 	// X words of 32-bit cache
+	reg [31:0] INSTDATA;	
 	integer i;
+	
+	assign ioINSTDATA = INSTDATA;
 	
 	/* Start configuration */
 	initial begin
-		oStallI <= 1'b0;
-		oPCDATA <= 32'd0;
+		oStallI	<= 1'b0;
+		INSTDATA <= 32'd0;
 		for (i = 0; i < MEMSIZE; i = i + 1) begin
 			iCache[i] = 32'd0;
 			end
@@ -43,6 +46,6 @@ module CacheI_RV32 #(
 	/* ICache logic */
 	always @(posedge iCLK)
 	begin
-		oPCDATA <= iCache[iPCADDR];
+		INSTDATA <= iCache[iINSTADDR];
 	end
 endmodule

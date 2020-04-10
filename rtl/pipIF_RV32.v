@@ -23,8 +23,7 @@ module pipIF_RV32 (
 	output reg [31:0] oPCADDR,	// Data Address to read from ICache
 	input  [31:0] iBranchADDR,	// Branch Address	to be jumped in
 	input  iBRANCH,				// There is a Branch to be taken		
-	input  iStallI,				// ICache hasn't got data needed or Bubble in pipeline
-	input  iStallD,				// DCache hasn't got data needed or Bubble in pipeline	
+	input  iStallI,				// ICache hasn't got data needed or Bubble in pipeline	
 	input  iCLK,
 	input  iRST 
 	);
@@ -32,8 +31,6 @@ module pipIF_RV32 (
 	reg [31:2] reg_PC;
 	wire stall;
 	
-	assign stall = iStallI | iStallD;
-
 	/* PC logic */
 	always @(posedge iCLK)
 	begin
@@ -41,11 +38,11 @@ module pipIF_RV32 (
 			reg_PC <= 30'd0;
 		   end 
 		else begin
-			case ({stall, iBRANCH})
+			case ({iStallI, iBRANCH})
 				2'b00 : // No branch, no stall in pipeline
-					reg_PC <= reg_PC + 30'd4;			
+					reg_PC <= reg_PC + 30'd1;			
 				2'b01 : // There is a branch in pipeline to be taken
-					reg_PC <= iBranchADDR;
+					reg_PC <= iBranchADDR[31:2];
 				2'b10 : // There is a stall in pipeline
 					reg_PC <= reg_PC;
 				2'b11 : // ERROR, it shouldn't happen

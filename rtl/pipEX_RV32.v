@@ -24,13 +24,13 @@ module pipEX_RV32 (
 	output reg oRW,						// 1 = Read, 0 = Write
 	output reg oMEM,						// There is a memory transaction to be performed
 	output reg oBRANCH,					// There is a Branch to be taken
-	output reg [31:2] oBRANCHADDR,	// Target Address for Program Counter	
+	output reg [31:0] oBRANCHADDR,	// Target Address for Program Counter	
 	output reg [31:0] oMEMDATA,		// DATA OUT Memory
 	output reg [31:0] oMEMADDR,		// ADDR OUT Memory		
 	output reg [31:0] oDregDATA,		// DATA OUT Destination Register
 	output reg [4:0]  oDregADDR,		// ADDR OUT Destination Register
 	output reg [4:0]  oDecodedOP,		// One-Hot  Encoding Type Group to MEM
-	output reg [1:0]  oINVALID,		// 10 = istruction not aligned, 01 = invalid instruction
+	output reg [1:0]  oINVALID,		// 01 = istruction not aligned, 10 = invalid instruction
 	input [31:0] iAregDATA,				// DATA IN A register
 	input [31:0] iBregDATA,				// DATA IN B register
 	input [31:0] iIMMDATA,				// DATA IN Immediate
@@ -43,14 +43,15 @@ module pipEX_RV32 (
 	input iRST
 	);
 	
-	
+	/* Execute cases structure */	
 	always @(posedge iCLK)
 	begin
 		if (iRST) begin
-				oMEM <= 1'b0;
-				oBRANCH <= 1'b0;
+			oMEM <= 1'b0;
+			oBRANCH <= 1'b0;
 			end
 		else begin
+			oDregADDR <= iDregADDR;
 			oDecodedOP <= iDecodedOP[4:0];
 			oINVALID[0] <= (iINSTRAligned)? 1'b1 : 1'b0;
 			case (iOpType)
@@ -60,7 +61,7 @@ module pipEX_RV32 (
 						oMEM <= 1'b1;					
 						oBRANCH <= 1'b0;
 						oMEMADDR <= iAregDATA + iIMMDATA;
-					end
+						end
 						
 				6'b010000:	// Store Instruction Group
 					begin
@@ -68,13 +69,8 @@ module pipEX_RV32 (
 						oMEM <= 1'b1;					
 						oBRANCH <= 1'b0;
 						oMEMADDR <= iAregDATA + iIMMDATA;
-						case (iDecodedOP)
-							`SB	 : oMEMDATA <= { {24{iBregDATA[7]}}, iBregDATA[7:0] };
-							`SH	 : oMEMDATA <= { {16{iBregDATA[15]}}, iBregDATA[15:0] };
-							`SW	 : oMEMDATA <= iBregDATA;
-							default: oDregDATA <= 32'dX;
-							endcase
-					end							
+						oMEMDATA <= iBregDATA;
+						end							
 
 				6'b001000:	// Immediate Instruction Group
 					begin

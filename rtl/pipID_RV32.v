@@ -24,30 +24,29 @@ module pipID_RV32 (
 	output reg [31:0] oAregDATA,	// DATA OUT A Register
 	output reg [31:0] oBregDATA,	// DATA OUT B Register
 	output reg [31:0] oIMMDATA,	// DATA OUT Immediate
-	output reg [31:0] oPCADDR,	// ADDR OUT PC
+	output reg [31:0] oPCADDR,		// ADDR OUT PC
 	output reg [5:0]  oOpType,		// One-Hot Encoding Operation Group
 	output reg [9:0]  oDecodedOP,	// Mixed Encoding Operation Type
 	output reg [4:0]  oDregADDR,	// ADDR D Register		
-	output reg oINSTRAligned,			// Instruction is aligned?
+	output reg oINSTRAligned,		// Instruction is aligned?
 	input [31:0] iPCADDR,			// PC Address
-	input [31:0] iCacheDATA,		// Instruction from ICache
+	input [31:0] iINSTDATA,			// Instruction from ICache
 	input [31:0] iDregDATA,			// DATA D Register
 	input [4:0]  iDregADDR,			// ADDR D Register	
 	input iCLK,
 	input iRST
 	);	
 
-	wire [31:0] idu_DATA = iCacheDATA[31:0];
+	wire [31:0] idu_DATA = iINSTDATA[31:0];
 	wire [6:0] idu_f7 = idu_DATA[31:25];
 	wire [2:0] idu_f3 = idu_DATA[14:12];
 	wire [6:2] idu_op = idu_DATA[6:2];
 	
-	reg [31:0] idu_RegBANK [31:0];	// RISC-V RV32I 32 bit register bank
+	/* Hazard detection wires */
+	// wire id_hazard, ex_hazard, ex_DregADDR;
 	
-	/* Hazard detection logic */
-	// wire idu_hazard = (idu_rd != 5'd0) && (idu_ra == idu_rd || idu_rb == idu_rd);
-	// wire exu_hazard = (exu_rd != 5'd0) && (idu_ra == exu_rd || idu_rb == exu_rd);
-	// wire hazard     = idu_hazard || exu_hazard;
+	/* RISC-V RV32I 32 bit register bank */
+	reg [31:0] idu_RegBANK [31:0];	
 
 	/* Output Updater */
 	always @(posedge iCLK)
@@ -76,8 +75,8 @@ module pipID_RV32 (
 					begin
 						oOpType <= 6'b100000;
 						oAregDATA <= idu_RegBANK[idu_DATA[19:15]];
-						oBregDATA <= idu_RegBANK[0];
-						oIMMDATA <= { {20{idu_DATA[31]}}, idu_DATA[31:20] };
+						oBregDATA <= 5'd0;
+						oIMMDATA  <= { {20{idu_DATA[31]}}, idu_DATA[31:20] };
 						oDregADDR <= idu_DATA[11:7];
 						case (idu_f3)
 							3'b000 : oDecodedOP <= `LB;
@@ -94,8 +93,8 @@ module pipID_RV32 (
 						oOpType <= 6'b010000;
 						oAregDATA <= idu_RegBANK[idu_DATA[19:15]];
 						oBregDATA <= idu_RegBANK[idu_DATA[24:20]];
-						oIMMDATA <= { {20{idu_DATA[31]}}, idu_DATA[31:25], idu_DATA[11:7] };
-						oDregADDR <= 6'b000000;
+						oIMMDATA  <= { {20{idu_DATA[31]}}, idu_DATA[31:25], idu_DATA[11:7] };
+						oDregADDR <= 5'd0;
 						case (idu_f3)					
 							3'b000  : oDecodedOP <= `SB;
 							3'b001  : oDecodedOP <= `SH;
@@ -108,7 +107,7 @@ module pipID_RV32 (
 					begin
 						oOpType <= 6'b001000;
 						oAregDATA <= idu_RegBANK[idu_DATA[19:15]];
-						oBregDATA <= idu_RegBANK[0];
+						oBregDATA <= 5'd0;
 						oIMMDATA <= { {20{idu_DATA[31]}}, idu_DATA[31:20] };									
 						oDregADDR <= idu_DATA[11:7];
 						case (idu_f3)
@@ -137,7 +136,7 @@ module pipID_RV32 (
 						oOpType <= 6'b000100;
 						oAregDATA <= idu_RegBANK[idu_DATA[19:15]];
 						oBregDATA <= idu_RegBANK[idu_DATA[24:20]];
-						oIMMDATA <= idu_RegBANK[0];
+						oIMMDATA <= 5'd0;
 						oDregADDR <= idu_DATA[11:7];
 						case (idu_f3)
 							3'b000 : 
@@ -191,7 +190,7 @@ module pipID_RV32 (
 						oAregDATA <= idu_RegBANK[idu_DATA[19:15]];
 						oBregDATA <= idu_RegBANK[idu_DATA[24:20]];
 						oIMMDATA <= { {20{idu_DATA[31]}}, idu_DATA[7], idu_DATA[30:25], idu_DATA[11:8], 1'b0 };
-						oDregADDR <= 6'b000000;
+						oDregADDR <= 5'd0;
 						case (idu_f3)
 							3'b000 : oDecodedOP <= `BEQ;
 							3'b001 : oDecodedOP <= `BNE;
@@ -207,7 +206,7 @@ module pipID_RV32 (
 					begin
 						oOpType <= 6'b000001;
 						oAregDATA <= iPCADDR;
-						oBregDATA <= idu_RegBANK[0];
+						oBregDATA <= 5'd0;
 						oIMMDATA <= { idu_DATA[31:12], 12'h0 };
 						oDregADDR <= idu_DATA[11:7];
 						oDecodedOP <= `AUIPC;
@@ -216,8 +215,8 @@ module pipID_RV32 (
 				5'b01101 :	// ALU Immediate Instruction
 					begin
 						oOpType <= 6'b000001;
-						oAregDATA <= idu_RegBANK[0];
-						oBregDATA <= idu_RegBANK[0];
+						oAregDATA <= 5'd0;
+						oBregDATA <= 5'd0;
 						oIMMDATA <= { idu_DATA[31:12], 12'h0 };
 						oDregADDR <= idu_DATA[11:7];
 						oDecodedOP <= `LUI;
@@ -226,8 +225,8 @@ module pipID_RV32 (
 				5'b11011 :	// Jump Instruction
 					begin
 						oOpType <= 6'b000001;
-						oAregDATA <= idu_RegBANK[0];
-						oBregDATA <= idu_RegBANK[0];
+						oAregDATA <= 5'd0;
+						oBregDATA <= 5'd0;
 						oIMMDATA <= { {12{idu_DATA[31]}}, idu_DATA[19:12], idu_DATA[20], idu_DATA[30:21], 1'b0 };
 						oDregADDR <= idu_DATA[11:7];
 						oDecodedOP <= `JAL;
@@ -236,8 +235,8 @@ module pipID_RV32 (
 				5'b11001 :	// Jump Instruction
 					begin
 						oOpType <= 6'b000001;
-						oAregDATA <= idu_RegBANK[0];
-						oBregDATA <= idu_RegBANK[0];
+						oAregDATA <= idu_DATA[19:15];
+						oBregDATA <= 5'd0;
 						oIMMDATA <= { {20{idu_DATA[31]}}, idu_DATA[31:20] };
 						oDregADDR <= idu_DATA[11:7];						
 						case (idu_f3)
@@ -251,8 +250,14 @@ module pipID_RV32 (
 						oOpType <= 6'd0;	
 						oDecodedOP <= `NOTSUP;
 					end
-				
+			
 			endcase		
+
+			/* Hazard detection logic */
+			//id_hazard <= (oDregADDR != 5'd0) && (idu_ra == oDregADDR || idu_rb == oDregADDR);
+			//ex_hazard <= (exu_rd != 5'd0) && (idu_ra == exu_rd || idu_rb == exu_rd);
+			//last_DregADDR <= oDregADDR;
+			//hazard    = id_hazard || ex_hazard;		
 		end	
 	end
 endmodule

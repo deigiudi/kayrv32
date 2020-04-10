@@ -23,16 +23,19 @@
 module pipMA_RV32 (	
 	output reg [4:0]  oDregADDR,	// ADDR OUT Destination Register	
 	output reg [31:0] oDregDATA,	// DATA OUT Destination Register
+	inout  [31:0] ioMEMDATA,		// DATA OUT DCache
+	input  [31:0] iDregDATA,		// DATA IN Destination Register
+	input  [31:0] iDCacheDATA,		//	DATA IN DCache
 	input  [4:0]  iDecodedOP,		// Operation to be performed	
 	input  [4:0]  iDregADDR,		// ADDR IN Destination Register	
-	input  [31:0] iDregDATA,		// DATA IN Destination Register
-	input  iStallD,					// DCache hasn't got data needed or Bubble in pipeline
+	input  iStallD,					// DCache hasn't got data needed 
 	input  iRW,							// 1 = Read, 0 = Write
-	input  iMEM,						// There is a memory transaction to be performed
 	input  iCLK,
 	input  iRST
 	);
 	
+	reg [31:0] MEMDATA;	
+		
 	always @(posedge iCLK)
 	begin
 		if (iRST) begin
@@ -41,28 +44,32 @@ module pipMA_RV32 (
 			end
 		else begin
 			oDregADDR <= iDregADDR;
-			case (iMEM)
-				1'b1 :	/* Memory operation */
-					case (iRW)
-						1'b1 : 
-							if (!iStallD) begin
-								case (iDecodedOP)
-									`LB	 :	oDregDATA <= 32'dX;
-									`LH	 : oDregDATA <= 32'dX;
-									`LBU	 : oDregDATA <= 32'dX;
-									`LHU	 : oDregDATA <= 32'dX;
-									`LW	 : oDregDATA <= 32'dX;
-									default: oDregDATA <= 32'dX;
-									endcase
-							end else begin
-								oDregDATA <= 32'dX;
-							end						
-						1'b0 : oDregDATA <= 32'dX;
-						endcase
- 				1'b0 :	/* Passthrough logic */
-					oDregDATA <= iDregDATA;
-				endcase
+			oDregDATA <= iDregDATA;
+			case (iRW)
+				1'b1 : // It's a READ: something to read from DCache
+					if (!iStallD) begin
+						case (iDecodedOP)									
+							`LB 	 :	oDregDATA <= {{24{iDregDATA[7]}}, iDregDATA[7:0]};
+							`LH	 : oDregDATA <= {{16{iDregDATA[7]}}, iDregDATA[15:0]};
+							`LBU	 : oDregDATA <= {{24{1'b0}}, iDregDATA[7:0]};
+							`LHU	 : oDregDATA <= {{16{1'b0}}, iDregDATA[15:0]};
+							`LW	 : oDregDATA <= iDregDATA;
+							default: oDregDATA <= 32'dX;
+							endcase
+						end
+					else	// Cache hasn't got DATA requested. We have to wait!
+						oDregDATA <= 32'dX;
+				1'b0 :	// IT's a WRITE: something to write from DCache
+					case (iDecodedOP)
+						`SB	 : MEMDATA <= {{24{iDCacheDATA[7]}}, iDCacheDATA[7:0] };
+						`SH	 : MEMDATA <= {{16{iDCacheDATA[15]}}, iDCacheDATA[15:0] };
+						`SW	 : MEMDATA <= iDCacheDATA;
+						default: MEMDATA <= 32'dX;
+						endcase								
+					endcase
 			end
 		end
+	
+	assign ioMEMDATA = MEMDATA;
 	
 endmodule

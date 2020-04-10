@@ -22,15 +22,16 @@
 module CacheD_RV32 #(
 	parameter MEMSIZE = 8
 	)(	
-	output reg oStallD,				// DCache hasn't got data needed
-	inout  [31:0] ioMEMDATA,		// MEMORY DATA OUT	
-	input  [31:0] iMEMADDR,			// MEMORY ADDR IN
-	input  iRW,							// 1 = Read, 0 = Write
-	input  iCLK
+	output reg oStallD,			// DCache hasn't got data needed
+	inout [31:0] ioMEMDATA,		// MEMORY DATA OUT		
+	input [31:0] iMEMADDR,		// MEMORY ADDR IN
+	input iMEM,						// There is a memory transaction to be performed
+	input iRW,						// 1 = Read, 0 = Write
+	input iCLK
 	);
 	
 	reg [31:0] dCache[0:MEMSIZE-1]; 	// X words of 32-bit cache
-	reg MEMDATA;
+	reg [31:0] MEMDATA;
 	integer i;
 	
 	assign ioMEMDATA = MEMDATA;
@@ -47,12 +48,14 @@ module CacheD_RV32 #(
 	/* dCache logic */
 	always @(posedge iCLK)
 	begin
-		case (iRW)
-			1'b0 :
-				dCache[iMEMADDR] <= ioMEMDATA;
-			1'b1 :
-				MEMDATA <= dCache[iMEMADDR];
-			endcase	
+		if (iMEM) begin
+			case (iRW)
+				1'b0 :
+					dCache[iMEMADDR] <= ioMEMDATA;
+				1'b1 :
+					MEMDATA <= dCache[iMEMADDR];
+				endcase	
+		end
 	end	
 	
 endmodule

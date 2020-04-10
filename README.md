@@ -5,6 +5,6 @@ WORK IN PROGRESS: At this point, this microprocessor hasn't yet been tested. Fir
 Verification will be performed using already available open-source verification test suite.
 
 # TO DO:
-  - Bypassing Unit in Execution Stage module,
-  - Complete the simple Branch Controller
-  - Cache controller & Istruction & Data Cache
+  - Complete the simple Branch Controller,
+  - Dealing with hazard in pipeline,
+  - Cache controller + Istruction & Data Caches
