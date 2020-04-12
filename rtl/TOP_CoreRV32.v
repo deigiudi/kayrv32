@@ -24,7 +24,8 @@ module TOP_CoreRV32 (
 	output oMEM,					// There is a memory transaction to be performed
 	output [31:0] oINSTADDR,	// DATA Address to read from ICache
 	output [31:0] oMEMADDR,		// ADDR OUT Memory	
-	inout  [31:0] ioMEMDATA,	// DATA IN Memory
+	inout  [31:0] ioMEMDATA,	// DATA INOUT Memory
+	input  [31:0] iMEMMAPPED,	// DATA OUT Memory from DEMUX unit		
 	input  [31:0] iINSTDATA,	// Instruction from ICache	
 	input  iStallI,				// ICache hasn't got data needed or Bubble in pipeline	
 	input  iStallD,				// DCache hasn't got data needed or Bubble in pipeline		
@@ -33,7 +34,7 @@ module TOP_CoreRV32 (
 );
 
 // IF <=> EX
-wire [31:0] BranchADDR;
+wire [31:2] BranchADDR;
 wire ItsBRANCH;
 
 // ID <=> EX
@@ -51,6 +52,7 @@ wire [31:0] DregDATA;
 wire  [4:0] DregADDR;
 
 // EX <=> MA
+wire [31:0] MEMDATA;
 wire [31:0] DregDATA1;
 wire  [4:0] DregADDRint2;
 wire	[4:0] DecodedOPMEM;

@@ -1,28 +1,19 @@
 Vivado Simulator 2019.2
 Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
-Running: /tools/Xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 3bc1b56345364b0f80b20e59d8e0f703 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot TOP_RV32_behav xil_defaultlib.TOP_RV32 xil_defaultlib.glbl -log elaborate.log 
+Running: /tools/Xilinx/Vivado/2019.2/bin/unwrapped/lnx64.o/xelab -wto 3bc1b56345364b0f80b20e59d8e0f703 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot TB_UART_behav xil_defaultlib.TB_UART xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'oPCADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:63]
-WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 32 for port 'iPCADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:80]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 30 for port 'oBRANCHADDR' [/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/Core_RV32.v:92]
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheCTRL.v" Line 20. Module CacheCTRL doesn't have a timescale but at least one module in design has a timescale.
-WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheI_RV32.v" Line 20. Module CacheI_RV32 doesn't have a timescale but at least one module in design has a timescale.
-WARNING: [XSIM 43-4099] "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/CacheD_RV32.v" Line 20. Module CacheD_RV32 doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.CacheCTRL
-Compiling module xil_defaultlib.CacheI_RV32
-Compiling module xil_defaultlib.CacheD_RV32
-Compiling module xil_defaultlib.pipIF_RV32
-Compiling module xil_defaultlib.pipID_RV32
-Compiling module xil_defaultlib.pipEX_RV32
-Compiling module xil_defaultlib.pipMA_RV32
-Compiling module xil_defaultlib.pipWB_RV32
-Compiling module xil_defaultlib.Core_RV32
-Compiling module xil_defaultlib.TOP_RV32
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot TOP_RV32_behav
+Compiling architecture rtl of entity xil_defaultlib.UART_RX [\UART_RX(gclks_x_bit=5)\]
+Compiling architecture rtl of entity xil_defaultlib.UART_TX [\UART_TX(gclks_x_bit=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.tb_uart
+Built simulation snapshot TB_UART_behav

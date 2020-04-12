@@ -24,7 +24,7 @@ module pipEX_RV32 (
 	output reg oRW,						// 1 = Read, 0 = Write
 	output reg oMEM,						// There is a memory transaction to be performed
 	output reg oBRANCH,					// There is a Branch to be taken
-	output reg [31:0] oBRANCHADDR,	// Target Address for Program Counter	
+	output reg [31:2] oBRANCHADDR,	// Target Address for Program Counter	
 	output reg [31:0] oMEMDATA,		// DATA OUT Memory
 	output reg [31:0] oMEMADDR,		// ADDR OUT Memory		
 	output reg [31:0] oDregDATA,		// DATA OUT Destination Register

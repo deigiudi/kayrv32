@@ -1,14 +1,15 @@
 # compile verilog/system verilog design source files
-verilog xil_defaultlib  --include "../../../../../rtl" \
+verilog xil_defaultlib  --include "../../../../../rtl" --include "../../../../BenchRV32.srcs/sources_1/ip/clk_wiz_0" \
+"../../../../BenchRV32.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../BenchRV32.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
 "../../../../../rtl/CacheCTRL.v" \
 "../../../../../rtl/CacheD_RV32.v" \
 "../../../../../rtl/CacheI_RV32.v" \
-"../../../../../rtl/Core_RV32.v" \
+"../../../../../rtl/TOP_CoreRV32.v" \
 "../../../../../rtl/pipEX_RV32.v" \
 "../../../../../rtl/pipID_RV32.v" \
 "../../../../../rtl/pipIF_RV32.v" \
 "../../../../../rtl/pipMA_RV32.v" \
-"../../../../../rtl/pipWB_RV32.v" \
 "../../../../../rtl/TOP_RV32.v" \
 
 # compile glbl module

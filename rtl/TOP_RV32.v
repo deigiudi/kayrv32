@@ -20,8 +20,8 @@
 `timescale 1ns / 1ps
 
 module TOP_RV32 (
-	output [31:0] oGPIO_OUT,
-	input  [31:0] iGPIO_IN,
+//	output [31:0] oGPIO_OUT,
+//	input  [31:0] iGPIO_IN,
 	output oUART_TX,
 	input	 iUART_RX,
 	input	 exCLK,
@@ -34,6 +34,7 @@ wire iCLK;
 // ICache <=> Core
 wire [31:0] INSTADDR;
 wire [31:0] INSTDATA;
+wire [31:0] ICacheDATA;
 wire ICacheStall;
 
 // DCache <=> Core
@@ -42,6 +43,7 @@ wire MEMTransaction;
 wire DCacheStall;
 wire [31:0] MEMADDR;
 wire [31:0] MEMDATA;
+wire [31:0] DCacheDATA;
 
 clk_wiz_0 CLK (
 	.clk_out1(iCLK),
@@ -49,27 +51,25 @@ clk_wiz_0 CLK (
 	.reset(iRST)
 	);
 
-/*
 TOP_UART #(
    .t_CLKS_PER_BIT(115)
 	) UART (
-   .o_RX_Byte(),
-   .o_TX_Active(1'b1),
-   .o_TX_Done(),
-   .o_RX_DV(),
-   .o_TX_Serial(oUART_TX),
-   .i_TX_Byte(),
-   .i_TX_DV(),
-   .i_RX_Serial(iUART_RX),
-   .i_Clk(iCLK)	
+   .oRX_Byte(DCacheDATA[17:10]),
+   .oRX_GotIt(DCacheDATA[9]),   
+   .oTX_Done(DCacheDATA[8]),
+   .oTX_Serial(oUART_TX),
+   .iTX_Byte(DCacheDATA[7:0]),
+   .iTX_Enable(1'h1),
+   .iRX_Serial(iUART_RX),
+   .iCLK(iCLK)	
 	);
-*/
+
 
 CacheCTRL CacheCTRL(	
 	.oIcacheDATA(INSTDATA),
 	.oDcacheDATA(MEMDATA),
 	.iIcacheADDR(INSTADDR),
-	.iDcacheADDR(MEMADDR),
+	.iDcacheADDR(MEMADDR[29:0]),
 	.iStallI(ICacheStall),	
 	.iStallD(DCacheStall),		
 	.iCLK(iCLK)
@@ -78,34 +78,36 @@ CacheCTRL CacheCTRL(
 CacheI_RV32 #(
 	.MEMSIZE(8)
 	) CacheI (	
-	.oStallI(ICacheStall),	// iCache hasn't got data needed
-	.ioINSTDATA(INSTDATA),	// DATA OUT Destination Register	
-	.iINSTADDR(INSTADDR),	// ADDR IN Destination Register
+	.oStallI(ICacheStall),			// iCache hasn't got data needed
+	.oINSTDATA(ICacheDATA),			// DATA OUT Destination Register	
+	.iINSTDATA(INSTDATA),			// DATA IN Destination Register	
+	.iINSTADDR(INSTADDR),			// ADDR IN Destination Register
 	.iCLK(iCLK)
 	);
 	
 CacheD_RV32 #(
 	.MEMSIZE(8)
 	) CacheD (
-	.oStallD(DCacheStall),	// DCache hasn't got data needed
-	.ioMEMDATA(MEMDATA),		// DATA OUT Memory
-	.iMEMADDR(MEMADDR),		// ADDR IN MEMORY
-	.iMEM(MEMTransaction),	// There is a memory transaction to be performed	
-	.iRW(RW),					// 1 = Read, 0 = Write
+	.oStallD(DCacheStall),			// DCache hasn't got data needed
+	.oMEMDATA(DCacheDATA),			// DATA OUT Memory
+	.iMEMDATA(MEMDATA),				// DATA OUT Memory	
+	.iMEMADDR(MEMADDR[29:0]),		// ADDR IN MEMORY
+	.iMEM(MEMTransaction),			// There is a memory transaction to be performed	
+	.iRW(RW),							// 1 = Read, 0 = Write
 	.iCLK(iCLK)
 	);
 	
 TOP_CoreRV32 Core (
-	.oRW(RW),					// 1 = Read, 0 = Write
-	.oMEM(MEMTransaction),	// There is a memory transaction to be performed
-	.oINSTADDR(INSTADDR),	// Data Address to read from ICache
-	.oMEMADDR(MEMADDR),		// ADDR OUT Memory
-	.ioMEMDATA(MEMDATA),		// DATA IN Memory
-	.iINSTDATA(INSTDATA),	// Instruction from ICache	
-	.iStallI(ICacheStall),	// ICache hasn't got data needed = Bubble in pipeline
-	.iStallD(DCacheStall),	// DCache hasn't got data needed = Bubble in pipeline		
+	.oRW(RW),							// 1 = Read, 0 = Write
+	.oMEM(MEMTransaction),			// There is a memory transaction to be performed
+	.oINSTADDR(INSTADDR),			// Data Address to read from ICache
+	.oMEMADDR(MEMADDR),				// ADDR OUT Memory
+	.ioMEMDATA(DCacheDATA),			// DATA IN Memory
+	.iINSTDATA(ICacheDATA),			// Instruction from ICache	
+	.iStallI(ICacheStall),			// ICache hasn't got data needed = Bubble in pipeline
+	.iStallD(DCacheStall),			// DCache hasn't got data needed = Bubble in pipeline		
 	.iCLK(iCLK),
 	.iRST(iRST)
-);
+	);
 
 endmodule

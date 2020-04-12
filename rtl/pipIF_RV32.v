@@ -21,7 +21,7 @@
 
 module pipIF_RV32 (
 	output reg [31:0] oPCADDR,	// Data Address to read from ICache
-	input  [31:0] iBranchADDR,	// Branch Address	to be jumped in
+	input  [31:2] iBranchADDR,	// Branch Address	to be jumped in
 	input  iBRANCH,				// There is a Branch to be taken		
 	input  iStallI,				// ICache hasn't got data needed or Bubble in pipeline	
 	input  iCLK,

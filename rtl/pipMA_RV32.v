@@ -57,8 +57,9 @@ module pipMA_RV32 (
 							default: oDregDATA <= 32'dX;
 							endcase
 						end
-					else	// Cache hasn't got DATA requested. We have to wait!
-						oDregDATA <= 32'dX;
+					else begin	// Cache hasn't got DATA requested. We have to wait!
+						oDregDATA <= iDregDATA;
+					end
 				1'b0 :	// IT's a WRITE: something to write from DCache
 					case (iDecodedOP)
 						`SB	 : MEMDATA <= {{24{iDCacheDATA[7]}}, iDCacheDATA[7:0] };
