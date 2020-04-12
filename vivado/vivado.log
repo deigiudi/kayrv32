@@ -2858,3 +2858,7 @@ Completed Processing XDC Constraints
 
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 refresh_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 8847.164 ; gain = 13.938 ; free physical = 246 ; free virtual = 1738
+write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
+/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf

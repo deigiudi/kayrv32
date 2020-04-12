@@ -5163,3 +5163,61 @@ selectButton(PAResourceQtoS.SchematicView_REGENERATE, "Schematic_refresh"); // E
 // Elapsed time: 116 seconds
 selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 647, 416, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
 selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+// Elapsed time: 324 seconds
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 507, 184, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+selectMenuItem(PAResourceQtoS.SchMenuAndMouse_SAVE_AS_PDF_FILE, "Save as PDF File..."); // ai (ao, cr)
+// k (cr): Save as PDF File: addNotify
+selectComboBox(PAResourceQtoS.SaveSchematicDialog_ORIENTATION, "Landscape", 1); // e (Q, k)
+selectButton(PAResourceQtoS.SaveSchematicDialog_SPECIFY_OUTPUT_PDF_FILE, (String) null); // t (an, k)
+// HOptionPane Error: 'The file '/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf' is not writable. Please choose another file. (File Not Writable)'
+selectButton("OptionPane.button", "OK"); // JButton (A, H)
+selectButton("OptionPane.button", "OK"); // JButton (A, H)
+setFileChooser("/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf");
+selectButton(PAResourceQtoS.SaveSchematicDialog_SPECIFY_OUTPUT_PDF_FILE, (String) null); // t (an, k)
+selectButton("OptionPane.button", "OK"); // JButton (A, H)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (k)
+// Tcl Command: 'write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf'
+// TclEventType: WRITE_SCHEMATIC
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (k)
+// Tcl Message: write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf 
+// Tcl Message: /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf 
+dismissDialog("Save as PDF File"); // k (cr)
+// [GUI Memory]: 164 MB (+1315kb) [15:10:17]
+// PAPropertyPanels.initPanels (CacheI (CacheI_RV32)) elapsed time: 0.3s
+// Elapsed time: 20 seconds
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 443, 129, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectMenu(PAResourceItoN.InstanceMenu_FLOORPLANNING, "Floorplanning"); // af (ao, cr)
+selectMenu(PAResourceOtoP.PrimitivesMenu_HIGHLIGHT_LEAF_CELLS, "Highlight Leaf Cells"); // af (ao, cr)
+selectMenu(PAResourceQtoS.SelectMenu_HIGHLIGHT, "Highlight"); // af (ao, cr)
+selectMenu(PAResourceOtoP.PrimitivesMenu_HIGHLIGHT_LEAF_CELLS, "Highlight Leaf Cells"); // af (ao, cr)
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 416, 106, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+selectButton(PAResourceQtoS.SchematicView_REGENERATE, "Schematic_refresh"); // E (f, cr)
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 724, 91, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+selectMenuItem(PAResourceQtoS.SchMenuAndMouse_SAVE_AS_PDF_FILE, "Save as PDF File..."); // ai (ao, cr)
+// k (cr): Save as PDF File: addNotify
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (k)
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a (k)
+dismissDialog("Save as PDF File"); // k (cr)
+selectButton(PAResourceQtoS.SchematicView_REGENERATE, "Schematic_refresh"); // E (f, cr)
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 781, 153, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectView(PAResourceOtoP.PAViews_SCHEMATIC, "Schematic", 257, 120, 1129, 653, false, false, false, true, false); // f (i, cr) - Popup Trigger
+selectMenu(PAResourceItoN.NetlistSchMenuAndMouse_VIEW, "View"); // af (ao, cr)
+selectMenuItem(PAResourceQtoS.SchMenuAndMouse_SAVE_AS_PDF_FILE, "Save as PDF File..."); // ai (ao, cr)
+// k (cr): Save as PDF File: addNotify
+selectComboBox(PAResourceQtoS.SaveSchematicDialog_ORIENTATION, "Landscape", 1); // e (Q, k)
+selectButton(PAResourceQtoS.SaveSchematicDialog_SPECIFY_OUTPUT_PDF_FILE, (String) null); // t (an, k)
+setFileChooser("/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf");
+selectButton(PAResourceQtoS.SaveSchematicDialog_SPECIFY_OUTPUT_PDF_FILE, (String) null); // t (an, k)
+selectButton("OptionPane.button", "OK"); // JButton (A, H)
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (k)
+// Tcl Command: 'write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf'
+// TclEventType: WRITE_SCHEMATIC
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (k)
+// Tcl Message: write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf 
+// Tcl Message: /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf 
+dismissDialog("Save as PDF File"); // k (cr)
+// HMemoryUtils.trashcanNow. Engine heap size: 3,371 MB. GUI used memory: 103 MB. Current time: 4/12/20, 12:48:18 PM CEST

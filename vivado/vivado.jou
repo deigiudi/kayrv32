@@ -128,3 +128,5 @@ refresh_design
 refresh_design
 refresh_design
 refresh_design
+write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/top.pdf
+write_schematic -format pdf -orientation landscape -force /mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/pdf/core.pdf
