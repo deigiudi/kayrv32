@@ -1,2 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/mnt/hgfs/RISC-V/1_Cores/Verilog_BenchRV32I/rtl/UART_TX.vhdl" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'UART_TX'

@@ -1,8 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../../rtl/TOP_UART.vhdl" \
-"../../../../../rtl/UART_RX.vhdl" \
-"../../../../../rtl/UART_TX.vhdl" \
-
-# Do not sort compile order
-nosort
