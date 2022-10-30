@@ -16,6 +16,7 @@ At this point this project is in a very early state and nothing is working. WIP.
 - ./tb - basic HDL test benches
 - ./tb/compliance - files related to the official compatibility framework for RISC-V, RISCOF
 - ./tb/risc-arch-test - tests from the official riscv-arch-test repository
+- ./tb/risc-arch-test - tests from the official riscv-test repository
 
 ## Setup configuration
 The KayRV32 RISC-V processor has been tested for compatibility to the RISC-V user and privileged ISA specifications with the official RISCOF compatibility framework. The [Sail RISC-V model](https://github.com/riscv/sail-riscv) is used as reference model. Files neeeded by the framework has been created according to the [RISCOF installation guide](https://riscof.readthedocs.io/en/latest/intro.html) and are stored in [/tb/compliance](/tb/compliance). In this folder, the two plugins for the framework are defined:
