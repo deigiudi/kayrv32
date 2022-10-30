@@ -14,7 +14,7 @@ At this point this project is in a very early state and nothing is working. WIP.
 - ./script - scripts for building and testing in vivado
 - ./syn - files related to the synthesis flow
 - ./tb - basic HDL test benches
-- ./tb/compliance - files related to RISCOF validation process
+- ./tb/compliance - files related to the official compatibility framework for RISC-V, RISCOF
 - ./tb/risc-arch-test - tests from the official riscv-arch-test repository
 
 ## Setup configuration
