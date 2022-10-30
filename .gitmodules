@@ -1,3 +1,6 @@
 [submodule "tb/riscv-arch-test"]
 	path = tb/riscv-arch-test
 	url = https://github.com/riscv-non-isa/riscv-arch-test.git
+[submodule "tb/riscv-tests"]
+	path = tb/riscv-tests
+	url = https://github.com/riscv-software-src/riscv-tests
