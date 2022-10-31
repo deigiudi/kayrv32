@@ -17,7 +17,7 @@ At this point this project is in a very early state and nothing is working. WIP.
 - ./tb     - basic HDL test benches
 - ./tb/compliance     - files for the official compatibility framework for RISC-V, RISCOF
 - ./tb/risc-arch-test - tests from the official riscv-arch-test repository
-- ./tb/risc-arch-test - tests from the official riscv-test repository
+- ./tb/risc-tests     - tests from the official riscv-tests repository
 </pre>
 
 ## Setup configuration
@@ -32,3 +32,4 @@ This repository assumes the following to be correctly installed in your system:
 - [RISCOF](https://github.com/riscv-software-src/riscof) - RISC-V Compatibility Framework
 - [Sail RISC-V model](https://github.com/riscv/sail-riscv) - the reference model
 - [RISC-V GCC toolchain](https://github.com/riscv/riscv-gnu-toolchain) - to compile native rv32 code
+All of these can be installed by following the [RISCOF installation guide](https://riscof.readthedocs.io/en/latest/installation.html)
