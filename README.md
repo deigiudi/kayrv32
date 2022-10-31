@@ -32,4 +32,5 @@ This repository assumes the following to be correctly installed in your system:
 - [RISCOF](https://github.com/riscv-software-src/riscof) - RISC-V Compatibility Framework
 - [Sail RISC-V model](https://github.com/riscv/sail-riscv) - the reference model
 - [RISC-V GCC toolchain](https://github.com/riscv/riscv-gnu-toolchain) - to compile native rv32 code
+
 All of these can be installed by following the [RISCOF installation guide](https://riscof.readthedocs.io/en/latest/installation.html)
