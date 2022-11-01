@@ -45,7 +45,7 @@ wire [31:0] MEMADDR;
 wire [31:0] MEMDATA;
 wire [31:0] DCacheDATA;
 
-clk_wiz_0 CLK (
+clk_wiz CLK (
 	.clk_out1(iCLK),
 	.clk_in1(exCLK), 
 	.reset(iRST)
