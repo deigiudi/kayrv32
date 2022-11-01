@@ -1,6 +1,6 @@
 [submodule "tb/core/riscv-arch-test"]
 	path = tb/core/riscv-arch-test
-	url = https://github.com/riscv-non-isa/riscv-arch-test.git
+	url = git@github.com:riscv-non-isa/riscv-arch-test.git
 [submodule "tb/core/riscv-tests"]
 	path = tb/core/riscv-tests
-	url = https://github.com/riscv-software-src/riscv-tests
+	url = git@github.com:riscv-software-src/riscv-tests.git
