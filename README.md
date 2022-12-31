@@ -1,7 +1,5 @@
 # KayRV32
-KayRV32 is a Verilog implementation for a RISC-V RV32I based microprocessor (classic 5-stage, in-order, single issue)
-
-At this point this project is in a very early state and nothing is working. WIP.
+KayRV32 is a Verilog implementation of a RISC-V RV32I based microprocessor (classic 5-stage, in-order, single issue). At this point this project is in a very early state and nothing is working. Working In Progress.
 
 1. [Project structure](#Project-structure)
 2. [Dependencies](#Dependencies)
