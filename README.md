@@ -37,7 +37,7 @@ All of these can be installed by following the [RISCOF installation guide](https
 
 ## Setup configuration
 #### Verification flow
-The KayRV32 RISC-V processor has been tested for compatibility to the RISC-V user and privileged ISA specifications with the official RISCOF compatibility framework. The [Sail RISC-V model](https://github.com/riscv/sail-riscv) is used as reference model. Files neeeded by the framework has been created according to the [RISCOF installation guide](https://riscof.readthedocs.io/en/latest/installation.html) and are stored in [/tb/core/compliance](/tb/core/compliance). In this folder, the two plugins for the framework are defined:
+The KayRV32 RISC-V processor will be tested for compatibility to the RISC-V user and privileged ISA specifications with the official RISCOF compatibility framework. The [Sail RISC-V model](https://github.com/riscv/sail-riscv) is used as reference model. Files neeeded by the framework has been created according to the [RISCOF installation guide](https://riscof.readthedocs.io/en/latest/installation.html) and are stored in [/tb/core/compliance](/tb/core/compliance). In this folder, the two plugins for the framework are defined:
 - **DUT:** kayrv32 in [plugin-kayrv32](/tb/compliance/plugin-kayrv32)
 - **REF :** sail_cSim in [plugin-sail_cSim](/tb/compliance/plugin-sail_cSim)
 
