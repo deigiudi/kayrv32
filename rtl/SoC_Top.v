@@ -29,7 +29,7 @@ module SoC_Top (
 );
 
 // ClockWizard <=> ALL
-wire p_Clk;
+wire w_Clk;
 
 // InstrMem <=> Core
 wire w_InstReadEn;
@@ -49,19 +49,19 @@ wire [31:0] w_Write_Data;
 clk_wiz Clk_gen (
 	// System
 	.clk_in1(sys_Clk),
-	.clk_out1(sys_Clk),
+	.clk_out1(w_Clk),
 	.reset(sys_Rst)
 	);
 
 Core_Top Core (
 	// System
-	.i_Clk(sys_Clk),												
+	.i_Clk(w_Clk),												
 	.i_Rstn(sys_Rst),											
 
-	// IBUS
+	// IBUS	
+	.o_iMem_En(w_InstReadEn),	
+	.o_iMem_Addr(w_Instr_Addr),
 	.i_iMem_Data(w_Instr_Data),	
-	.o_iMem_Addr(w_Instr_Addr),	
-	.o_iMem_ReadEn(w_InstReadEn),			
 
 	// DBUS
 	.i_dMem_DataRead(w_Read_Data),	
@@ -76,19 +76,19 @@ Core_Top Core (
 	);
 
 InstrMem #(.BYTESIZE(1024),
-					 .ISTRUCTIONS("ROM.mem")) iMem (
+			  .ISTRUCTIONS("ROM.mem")) iMem (
 	// System
-	.p_Clk(p_Clk),
+	.i_Clk(w_Clk),
 
 	// Data
-	.p_ReadEn_In(w_InstReadEn),
-	.p_AddrRead_In(w_Instr_Addr),
-	.p_DataRead_Out(w_Instr_Data)
+	.i_ReadEn(w_InstReadEn),
+	.i_ReadAddr(w_Instr_Addr),
+	.i_ReadData(w_Instr_Data)
 	);
 
 DataMem #(.BYTESIZE(1024)) dMem (
 	// System
-	.p_Clk(p_Clk),
+	.p_Clk(w_Clk),
 
 	// Data
 	.p_ReadEn_In(w_DataRead_En),

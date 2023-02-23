@@ -24,63 +24,62 @@
 
 module Core_pipIF (
 	// System
-	input wire 			 	 i_Clk,
-	input wire 			 	 i_Rstn,
+	input wire						i_Clk,
+	input wire						i_Rstn,
 	// Control input
-	input wire				 i_StallEn,		// stall enabler
-	input wire				 i_FlushEn,		// flush enabler
+	input wire						i_StallEn,		// stall enabler
+	input wire						i_FlushEn,		// flush enabler
 	// Branch
-	input wire 			 	 i_BranchEn,	// branch enabler
+	input wire						i_BranchEn,	// branch enabler
 	input wire [`MemAddr] i_BranchAddr, // branch address to new location
 	// Jump
-	input wire 			 	 i_JumpEn,		// jump enabler
+	input wire						i_JumpEn,		// jump enabler
 	input wire [`MemAddr] i_JumpAddr,   // jump address to new location
 	// Istruction Memory
-	output reg 			 	 o_ReadEn,     // read op enabler	
-	output reg [`MemAddr] o_ReadAddr,   // istruction address to memory
-	output reg [`MemAddr] o_PC,			// istruction address to decode	
+	input wire [`MemData] i_InstrData,  // instruction fetched from iMemory
+	output reg            o_InstrEn,    // instruction read enabler
+	output reg [`MemAddr] o_InstrAddr,  // instruction address to memory
+	output reg [`MemData] o_InstrData,  // instruction data to decode
+	output reg [`MemAddr] o_PC,			// program counter to decode	
 	// Control output
-	output reg         	 o_Event			// error event notifier
+	output reg						o_Event			// error event notifier
 	);
 
 	// Program Counter register
-	wire [`PCWidth] w_PC;
 	reg  [`PCWidth] r_nextPC;
 
 	// Program Counter logic
 	always @(posedge i_Clk)
 	begin
 	   if (i_Rstn==1'b0) begin  // Reset is active
-			o_Event 	  <=  1'b0;
-			r_nextPC   <= 32'b0;
-			o_ReadEn	  <=  1'b0;
-			o_ReadAddr <= 32'b0;
+			o_Event			<= 0;
+			o_PC				<= 0;
+			o_InstrEn   <= 0;
+			o_InstrAddr <= 0;
+			o_InstrData <= 0;
 		end else begin
-			o_Event <=  1'b0;			
+			o_Event <= 0;			
 			if (i_FlushEn) begin  // Flush pipeline
-				w_PC <= 32'b0;
+				o_InstrEn   <= 0;
+				o_InstrData <= 0;
 			end else begin        // Normal operation
-				w_ReadEn = 1'b1;
 			   case ({i_JumpEn, i_BranchEn, i_StallEn})
-				2'b000 : // No stall, branch or jump
-					w_PC  <= r_nextPC + 4;			
-				2'b001 : // Stall ==================
-					w_PC  <= r_nextPC - 4;	
-				2'b010 : // Branch =================
-					w_PC  <= i_BranchAddr;
-				2'b100 : // Jump ===================
-					w_PC  <= i_JumpAddr;
-				default: begin
-					w_ReadEn	<=  1'b0;
-					o_Event  <=  1'b1;
-					r_nextPC <= 32'b0;
-					end
+					2'b000 : // No jump, branch or stall
+						r_nextPC  <= o_InstrAddr + 4;			
+					2'b001 : // Stall ==================
+						r_nextPC  <= o_InstrAddr - 4;	
+					2'b010 : // Branch =================
+						r_nextPC  <= i_BranchAddr;
+					2'b100 : // Jump ===================
+						r_nextPC  <= i_JumpAddr;
+					default: begin
+						o_Event  <= 1;
+						r_nextPC <= 0;
+						end
 				endcase
+				o_InstrAddr <= r_nextPC;
+				o_InstrData <= i_InstrData;
 			end
-			o_ReadEn   <= w_ReadEn;
-			o_ReadAddr <= w_PC;
-			o_PC       <= r_PC;			
-			r_PC 		  <= w_PC;
 		end
 	end
 endmodule

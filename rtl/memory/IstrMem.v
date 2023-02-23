@@ -26,12 +26,12 @@ module InstrMem #(
    parameter ISTRUCTIONS = ""
 	)(		
 	// System
-	input wire p_Clk,
+	input wire i_Clk,
 
 	// Data
-	input wire p_ReadEn_In,
-	input wire [31:0] p_AddrRead_In,
-	output reg [31:0] p_DataRead_Out
+	input wire i_ReadEn,
+	input wire [31:0] i_ReadAddr,
+	output reg [31:0] o_ReadData
 	);
 	
 	reg  [31:0] r_IstrMem[BYTESIZE-1:0]; // X words of 32-bit
@@ -42,11 +42,11 @@ module InstrMem #(
 	end
 	
 	/* Instruction Memory logic */
-	always @(posedge p_Clk)
+	always @(posedge i_Clk)
 	begin
-		if (p_ReadEn_In)
-			p_DataRead_Out <= r_IstrMem[p_AddrRead_In[11:2]];
+		if (i_ReadEn)
+			o_ReadData <= r_IstrMem[i_ReadAddr[11:2]];
 		else
-			p_DataRead_Out <= 32'd0;
+			o_ReadData <= 32'd0;
 	end
 endmodule

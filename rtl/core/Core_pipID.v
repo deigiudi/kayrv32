@@ -25,16 +25,15 @@
 
 module Core_pipID (
 	// System
-	input wire  		      i_Clk,
-	input wire 			      i_Rstn,
+	input wire						i_Clk,
+	input wire						i_Rstn,
 	// Control input
-	input wire				   i_StallEn,	 // stall enabler
-	input wire				   i_FlushEn,	 // flush enabler
+	input wire						i_StallEn,	 // stall enabler
+	input wire						i_FlushEn,	 // flush enabler
 	// Data from memory
 	input wire [`MemAddr  ] i_PC,  		 // program counter from fetch
-	input wire [`MemData  ] i_Istr,  	 // istruction data from memory
+	input wire [`MemData  ] i_Istr,  	 // istruction data from fetch stage
 	// Data to memory
-	input wire 					i_MemEn,		 // enabler from writeback stage
 	input wire [`RegFAddr ] i_MemAddr,   // memory address from writeback
 	input wire [`RegFWidth] i_MemData,   // memory data from writeback	
 	// Data to register file
@@ -42,7 +41,7 @@ module Core_pipID (
 	input wire [`RegFAddr ] i_ExeAddr,   // register file address from execute
 	input wire [`RegFWidth] i_ExeData,   // register file data from execute
 	// Output to decode stage
-	output reg [`MemAddr	 ] o_PC, 		 // program counter passthrough	
+	output reg [`MemAddr	] o_PC, 		 // program counter passthrough	
 	output reg [`PortSel  ] o_Port_sel,	 // execution port selector
 	output reg [`OperSel  ] o_Oper_sel,	 // operation selector
 	output reg [`InputSel ] o_Input_sel, // input selector
@@ -51,8 +50,7 @@ module Core_pipID (
 	output reg [`RegFWidth] o_src2, 	 	 // operand 2 for the ALU
 	output reg [`RegFWidth] o_offset, 	 // immediate operand
 	// Control output
-	output reg              o_Exception, // ECALL or EBREAK detected
-	output reg              o_Event
+	output reg              o_Event      // ECALL or EBREAK detected
 	);
 
 	// RISC-V RV32I 32 bit register file
@@ -61,8 +59,8 @@ module Core_pipID (
 	// Decoding the istructions
 	wire [6:0]  w_opcode =  i_Istr[ 6: 0];
 	wire [4:0]  w_rd 	   =  i_Istr[11: 7];
-	wire [4:0]  w_rs1 	=  i_Istr[19:15];
-	wire [4:0]  w_rs2 	=  i_Istr[24:20];
+	wire [4:0]  w_rs1 	 =  i_Istr[19:15];
+	wire [4:0]  w_rs2 	 =  i_Istr[24:20];
 	wire [2:0]  w_funct3 =  i_Istr[14:12];
 	wire [6:0]  w_funct7 =  i_Istr[31:25];
 	wire [11:0] w_imm_I  = {{20{i_Istr[31]}}, i_Istr[31:20]};

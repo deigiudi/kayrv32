@@ -20,12 +20,16 @@
 */
 
 // ===========================
+// PIPELINE CONTROL          =
+// ===========================
+`define EventBus    2:0
+
+// ===========================
 // FETCH STAGE               =
 // ===========================
-// Instruction Memory
-`define PCWidth  31:0
-`define MemAddr  31:0
-`define MemData  31:0
+`define PCWidth    31:0
+`define MemAddr    31:0
+`define MemData    31:0
 
 // ===========================
 // DECODE STAGE              =

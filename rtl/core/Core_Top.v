@@ -24,35 +24,41 @@
 
 module Core_Top (
 	// System
-	input wire 			i_Clk,				 // System Clk
-	input wire 			i_Rstn,				 // System Reset
+	input wire				i_Clk,				 	// System Clk
+	input wire				i_Rstn,				 	// System Reset
 
 	// IBUS
-	input wire [31:0] i_iMem_Data,		 // istruction data from memory
-	output reg [31:0] o_iMem_Addr,		 // next istruction address
-	output reg 			o_iMem_ReadEn,		 // read op enabler
+	output reg 			  o_iMem_ReadEn,
+	output reg [31:0] o_iMem_Addr,
+	input wire [31:0] i_iMem_Data,
 
 	// DBUS
-	input wire [31:0] i_dMem_DataRead,	 // Data Read Bus	
-	output reg [31:0] o_dMem_Addr,		 // Address of memory to read or write
-	output reg [31:0] o_dMem_DataWrite,  // Data Write Bus
-	output reg 			o_dMem_ReadEn,		 // Read Enable
-	output reg 			o_dMem_WriteEn,	 // Write Enable	
+	input wire [31:0] i_dMem_ReadData,
+	output reg				o_dMem_ReadEn,
+	output reg				o_dMem_WriteEn,
+	output reg [31:0] o_dMem_RWAddr,
+	output reg [31:0] o_dMem_WriteData,
 
 	// CPU Signals
-	input wire 			o_Stall,		 		 // CPU is stalling
-	input wire 			o_Interrupt	 	 	 // CPU Interrupt
+	input wire				o_Stall,		 		 // CPU is stalling
+	input wire				o_Interrupt	 	 	 // CPU Interrupt
 );
 
+// Pipeline Controller
+wire w_Event_IF;
+wire w_Event_ID;
+wire w_Event_EX;
+wire w_EventBus[`EventBus ];
+
 // IF <=> ID
-wire [`MemAddr  ] w_toID_PC;
+wire [`MemAddr  ] w_PC_toID;
 
 // IF <=> EX
 wire              w_JumpEn;
 wire [`PCWidth  ] w_JumpAddr;
 
 // ID <=> EX
-wire [`MemAddr	 ] w_ID_PC;
+wire [`MemAddr	] w_ID_PC;
 wire [`PortSel  ] w_ID_Port_sel;
 wire [`OperSel  ] w_ID_Oper_sel;
 wire [`InputSel ] w_ID_Input_sel;
@@ -80,10 +86,12 @@ Core_pipIF pipIF (
 	.i_BranchAddr(),
 	.i_JumpEn(w_JumpEn),
 	.i_JumpAddr(w_JumpAddr),
-	.o_ReadEn(p_iMem_ReadEn_Out),	
-	.o_ReadAddr(p_iMem_AddrRead_Out),
-	.o_PC(w_toID_PC),	
-	.o_Event()
+	.i_InstrData(i_iMem_Data),
+	.o_InstrEn(o_iMem_ReadEn),
+	.o_InstrAddr(o_iMem_Addr),
+	.o_InstrData(o_iMem_Data),
+	.o_PC(w_PC_toID),	
+	.o_Event(w_Event_IF)
 );
 
 Core_pipID pipID (
@@ -91,9 +99,8 @@ Core_pipID pipID (
 	.i_Rstn(i_Rstn),
 	.i_StallEn(),
 	.i_FlushEn(),
-	.i_PC(w_toID_PC),
+	.i_PC(w_PC_toID),
 	.i_Istr(p_dMem_DataRead_In),
-	.i_MemEn(),
 	.i_MemAddr(),
 	.i_MemData(),
 	.i_ExeEn(w_ExeEn),
@@ -107,9 +114,7 @@ Core_pipID pipID (
 	.o_src1(w_src1),
 	.o_src2(w_src2),
 	.o_offset(w_offset),
-	.o_StallEn(),
-	.o_Exception(),
-	.o_Event()	
+	.o_Event(w_Event_ID)	
 );
 
 Core_pipEX pipEX (
@@ -130,7 +135,7 @@ Core_pipEX pipEX (
 	.o_JumpEn(w_ExeAddr),
 	.o_JumpAddr(w_ExeData),	
 	.o_StallEn(),
-	.o_Event()	
+	.o_Event(w_Event_EX)	
 );
 
 Core_pipMA pipMA (
@@ -149,6 +154,15 @@ Core_pipWB pipWB (
 	.o_WriteEn(),
 	.o_WriteAddr(),	
 	.o_WriteData()
+);
+
+assign w_EventBus = {w_Event_IF, w_Event_ID, w_Event_EX};
+
+Core_pipControl pipControl (
+	.i_Clk(i_Clk),
+	.i_Rstn(i_Rstn),
+	.i_EventBus(w_EventBus),	
+	.o_Interrupt(o_Interrupt)
 );
 
 endmodule

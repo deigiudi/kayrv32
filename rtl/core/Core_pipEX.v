@@ -25,10 +25,10 @@
 
 module Core_pipEX (
 	// System
-	input wire					i_Clk,
-	input wire 					i_Rstn,	
+	input wire 							i_Clk,
+	input wire 							i_Rstn,	
 	// From Decode Stage
-	input wire [`MemAddr	 ] i_PC, 		 // program counter	
+	input wire [`MemAddr	] i_PC,				 // program counter	
 	input wire [`PortSel  ] i_Port_sel,	 // execution port selector
 	input wire [`OperSel  ] i_Oper_sel,	 // operation selector
 	input wire [`InputSel ] i_Input_sel, // input selector
@@ -46,15 +46,15 @@ module Core_pipEX (
 	output reg              o_JumpEn,    // jump enabler
 	output reg [`PCWidth  ] o_JumpAddr,  // jump istruction address			
 	// Control output
-	output reg 					o_StallEn,	 // Stall request to stall controller
+	output reg 					    o_StallEn,	 // Stall request to stall controller
 	output reg              o_Event
 	);
 
 	/* Execute cases structure */	
 	always @(posedge i_Clk)
 	begin
-      // Signal passtrough
-      assign o_Oper_sel = i_Oper_sel;	
+    // Signal passtrough
+    assign o_Oper_sel = i_Oper_sel;	
 	
 		if (i_Rstn==1'b0 || i_Port_sel==`PORT_NOP) begin
 			o_JumpEn    <=  1'b0;
