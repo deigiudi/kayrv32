@@ -1,4 +1,6 @@
 # KayRV32
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 KayRV32 is a Verilog implementation of a RISC-V RV32I based microprocessor (classic 5-stage, in-order, single issue). At this point this project is in a very early state and nothing is working. Working In Progress.
 
 1. [Project structure](#Project-structure)
