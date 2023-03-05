@@ -1,6 +1,6 @@
 /*
 --------------------------------------------------------------------------------
--- COPYRIGHT (c) 2022, Alessandro Dei Giudici <alessandro.deig@live.it>
+-- COPYRIGHT (c) 2023, Alessandro Dei Giudici <alessandro.deig@live.it>
 --------------------------------------------------------------------------------
 -- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" -
 -- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   -
@@ -14,8 +14,10 @@
 -- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  -
 -- POSSIBILITY OF SUCH DAMAGE.                                                 -
 --------------------------------------------------------------------------------
--- Project : KayRV32                                                           -
--- Function: KayRV32 Istruction Fetch stage                      					 -
+-- Project     : KayRV32
+-- Function    : Istruction Fetch stage
+-- Description : Fetches instruction from memory based on necessity of jump or
+                 branch to be performed, pipeline stalling or normal operation
 --------------------------------------------------------------------------------
 */
 
@@ -24,25 +26,23 @@
 
 module Core_pipIF (
 	// System
-	input wire						i_Clk,
-	input wire						i_Rstn,
-	// Control input
-	input wire						i_StallEn,		// stall enabler
-	input wire						i_FlushEn,		// flush enabler
-	// Branch
-	input wire						i_BranchEn,	// branch enabler
-	input wire [`MemAddr] i_BranchAddr, // branch address to new location
-	// Jump
-	input wire						i_JumpEn,		// jump enabler
-	input wire [`MemAddr] i_JumpAddr,   // jump address to new location
+	input wire						 i_Clk,
+	input wire             i_Rstn,
+	// Branch & Jump
+	input wire             i_ID_JumpEn,      // Jump enabler
+	input wire [`MemAddr ] i_BG_JumpAddr,    // Jump address to new location	
+	input wire             i_EX_BranchEn,    // Branch enabler
+	input wire [`MemAddr ] i_EX_BranchAddr,  // Branch address to new location
 	// Istruction Memory
-	input wire [`MemData] i_InstrData,  // instruction fetched from iMemory
-	output reg            o_InstrEn,    // instruction read enabler
-	output reg [`MemAddr] o_InstrAddr,  // instruction address to memory
-	output reg [`MemData] o_InstrData,  // instruction data to decode
-	output reg [`MemAddr] o_PC,			// program counter to decode	
-	// Control output
-	output reg						o_Event			// error event notifier
+	input wire [`BusWidth] i_IMEM_InstrData, // Instruction fetched from iMemory
+	output reg             o_InstrEn,        // Instruction read enabler
+	output reg [`MemAddr ] o_InstrAddr,      // Instruction address to memory
+	output reg [`BusWidth] o_InstrData,      // Instruction data to decode
+	output reg [`MemAddr ] o_PC,             // Program counter to decode	
+	// Control IO
+	input wire            i_StallEn,        // Stall enabler
+	input wire            i_FlushEn,        // Flush enabler
+	output reg            o_Event           // Error event notifier
 	);
 
 	// Program Counter register
@@ -51,34 +51,34 @@ module Core_pipIF (
 	// Program Counter logic
 	always @(posedge i_Clk)
 	begin
-	   if (i_Rstn==1'b0) begin  // Reset is active
-			o_Event			<= 0;
-			o_PC				<= 0;
-			o_InstrEn   <= 0;
+	  if (i_Rstn==1'b0) begin  // Reset is active
+			o_InstrEn   <= 1;
 			o_InstrAddr <= 0;
-			o_InstrData <= 0;
+			o_InstrData <= 0;			
+			o_PC				<= 0;
+			o_Event			<= 0;			
 		end else begin
 			o_Event <= 0;			
-			if (i_FlushEn) begin  // Flush pipeline
+			if (i_FlushEn) begin   // Flush pipeline
 				o_InstrEn   <= 0;
 				o_InstrData <= 0;
-			end else begin        // Normal operation
-			   case ({i_JumpEn, i_BranchEn, i_StallEn})
+			end else begin         // Normal operation
+			   case ({i_ID_JumpEn, i_EX_BranchEn, i_StallEn})
 					2'b000 : // No jump, branch or stall
-						r_nextPC  <= o_InstrAddr + 4;			
+						r_nextPC  <= o_InstrAddr + 4;	
 					2'b001 : // Stall ==================
-						r_nextPC  <= o_InstrAddr - 4;	
+						r_nextPC  <= o_InstrAddr - 4;
 					2'b010 : // Branch =================
-						r_nextPC  <= i_BranchAddr;
+						r_nextPC  <= i_EX_BranchAddr;
 					2'b100 : // Jump ===================
-						r_nextPC  <= i_JumpAddr;
+						r_nextPC  <= i_BG_JumpAddr;
 					default: begin
 						o_Event  <= 1;
 						r_nextPC <= 0;
 						end
 				endcase
 				o_InstrAddr <= r_nextPC;
-				o_InstrData <= i_InstrData;
+				o_InstrData <= i_IMEM_InstrData;
 			end
 		end
 	end

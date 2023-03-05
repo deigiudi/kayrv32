@@ -1,6 +1,6 @@
 /*
 --------------------------------------------------------------------------------
--- COPYRIGHT (c) 2022, Alessandro Dei Giudici <alessandro.deig@live.it>
+-- COPYRIGHT (c) 2023, Alessandro Dei Giudici <alessandro.deig@live.it>
 --------------------------------------------------------------------------------
 -- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" -
 -- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   -
@@ -14,41 +14,34 @@
 -- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  -
 -- POSSIBILITY OF SUCH DAMAGE.                                                 -
 --------------------------------------------------------------------------------
--- Project : KayRV32                                                           -
--- Function: KayRV32 Writeback stage                                              -
+-- Project     : KayRV32
+-- Function    : Writeback stage
+-- Description : A combinatorial control block to select data either to be 
+                 written in the register file from data memory or ALU output
 --------------------------------------------------------------------------------
 */
 
 `timescale 1ns / 1ps
 `include "kayrv32_defines.vh"
  
-module Core_pipWB (  
-   // System
-   input wire              i_Clk,
-   input wire              i_Rstn,  
-   // Control input
-   input wire              i_StallEn,   // Stall enabler
+module Core_pipWB (
    // From Memory Stage
-   input wire              i_WriteEn,   
-   input wire [`RegFAddr ] i_WriteAddr,
-   input wire [`RegFWidth] i_WriteData,
+   input wire              i_MEM_RW_en,  
+   input wire              i_MEM_memtoreg,    
+   input wire [`RegFAddr ] i_MEM_rd_addr,
+   input wire [`BusWidth ] i_MEM_dataout,
+   input wire [`BusWidth ] i_MEM_aluout,
    // To Register File
    output reg              o_WriteEn,   
    output reg [`RegFAddr ] o_WriteAddr,
    output reg [`RegFWidth] o_WriteData 
 );
 
-   always @(posedge i_Clk) 
+   always @*
    begin
-      if (i_Rstn==1'b0 || i_StallEn) begin
-         o_WriteEn   <= 0;
-         o_WriteAddr <= 0;
-         o_WriteData <= 0;
-      end else begin
-         o_WriteEn   <= i_WriteEn;         
-         o_WriteAddr <= i_WriteAddr;
-         o_WriteData <= i_WriteData;
-      end
+     o_WriteEn   = i_MEM_RW_en;      
+     o_WriteAddr = i_MEM_rd_addr;
+     o_WriteData = (i_MEM_memtoreg) ? i_MEM_data : i_MEM_aluout;
    end
 
 endmodule

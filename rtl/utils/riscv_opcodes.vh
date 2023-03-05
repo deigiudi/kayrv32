@@ -1,6 +1,6 @@
 /*
 --------------------------------------------------------------------------------
--- COPYRIGHT (c) 2022, Alessandro Dei Giudici <alessandro.deig@live.it>
+-- COPYRIGHT (c) 2023, Alessandro Dei Giudici <alessandro.deig@live.it>
 --------------------------------------------------------------------------------
 -- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" -
 -- AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   -
@@ -14,8 +14,8 @@
 -- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  -
 -- POSSIBILITY OF SUCH DAMAGE.                                                 -
 --------------------------------------------------------------------------------
--- Project : KayRV32                                                           -
--- Function: RISC-V instruction opcodes, funct3, funct7 fields                 -
+-- Project : KayRV32
+-- Function: RISC-V instruction opcodes, funct3, funct7 fields
 --------------------------------------------------------------------------------
 */
 
