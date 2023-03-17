@@ -12,19 +12,24 @@ KayRV32 is a Verilog implementation of a RISC-V RV32I based microprocessor (clas
 
 ## Project structure
 <pre>
-- ./doc    - graphical view of the module
-- ./fpga   - board specific HDL, constraints and bitstream
-- ./rtl    - HDL for the KayRV32I CPU
-- ./rtl/core          - verilog files for the RISC-V RV32 core
-- ./rtl/memory        - verilog files for the memory implementation
-- ./rtl/pheripherals  - verilog files for the pheripherals
-- ./rtl/utils         - verilog files for opcodes and other helper code
-- ./script - scripts for building and testing in vivado
-- ./syn    - files related to the synthesis flow
-- ./tb     - basic HDL test benches
-- ./tb/core/compliance      - files for the official compatibility framework for RISC-V, RISCOF
-- ./tb/core/risc-arch-test  - tests from the official riscv-arch-test repository
-- ./tb/core/risc-tests      - tests from the official riscv-tests repository
+├── doc             # architectural description and testplan
+├── fpga            # board specific HDL, constraints and bitstream
+├── rtl             # Verilog HDL for the KayRV32I CPU
+    ├── core                # RISC-V RV32 core
+    ├── memory              # memory implementation
+    └── utils               # opcodes and other helper code
+├── script          # scripts to manage project and testing
+    ├── vivado              # create and manage vivado project
+    └── toolchain           # create and manage toolchain related scripts
+├── syn             # files related to the synthesis flow
+├── tb              # basic HDL test benches
+    └── core                # contains core level tests files
+        ├── compliance              # official compatibility framework for RISC-V, RISCOF
+        ├── risc-arch-test          # official riscv-arch-test repository
+        └── risc-tests              # official riscv-tests repository
+├── config.ini      # RISCOF configuration file
+├── LICENSE
+└── README.md  
 </pre>
 
 
