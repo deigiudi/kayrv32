@@ -24,61 +24,64 @@
 `timescale 1ns / 1ps
 `include "kayrv32_defines.vh"
 
+
 module Core_pipIF (
 	// System
 	input wire						 i_Clk,
 	input wire             i_Rstn,
-	// Branch & Jump
-	input wire             i_ID_JumpEn,      // Jump enabler
-	input wire [`MemAddr ] i_BG_JumpAddr,    // Jump address to new location	
-	input wire             i_EX_BranchEn,    // Branch enabler
-	input wire [`MemAddr ] i_EX_BranchAddr,  // Branch address to new location
+	// Branch & Jump	
+	input wire             i_EX_Branch_En,    // Branch enabler
+	input wire [`MemAddr ] i_EX_Branch_Addr,  // Branch address to new location
 	// Istruction Memory
-	input wire [`BusWidth] i_IMEM_InstrData, // Instruction fetched from iMemory
-	output reg             o_InstrEn,        // Instruction read enabler
-	output reg [`MemAddr ] o_InstrAddr,      // Instruction address to memory
-	output reg [`BusWidth] o_InstrData,      // Instruction data to decode
-	output reg [`MemAddr ] o_PC,             // Program counter to decode	
+	input wire [`BusWidth] i_IMEM_Data,       // Instruction fetched from iMemory
+	output reg             o_IMEM_En,         // Instruction read enabler
+	output reg [`MemAddr ] o_IMEM_Addr,       // Instruction address to iMemory
+	// Output
+	output reg [`BusWidth] o_InstrData,       // Instruction data to decode
+	output reg [`MemAddr ] o_PC,              // Program counter to decode	
 	// Control IO
-	input wire            i_StallEn,        // Stall enabler
-	input wire            i_FlushEn,        // Flush enabler
-	output reg            o_Event           // Error event notifier
+	input wire             i_StallEn,         // Stall enabler
+	input wire             i_FlushEn,         // Flush enabler
+	output reg             o_Event            // Error event notifier
 	);
 
 	// Program Counter register
 	reg  [`PCWidth] r_nextPC;
 
-	// Program Counter logic
 	always @(posedge i_Clk)
 	begin
-	  if (i_Rstn==1'b0) begin  // Reset is active
-			o_InstrEn   <= 1;
-			o_InstrAddr <= 0;
+	  if (i_Rstn == 1'b0) begin
+	  	// Reset is active
+			o_IMEM_En   <= 1;
+			o_IMEM_Addr <= 0;
 			o_InstrData <= 0;			
 			o_PC				<= 0;
 			o_Event			<= 0;			
 		end else begin
-			o_Event <= 0;			
-			if (i_FlushEn) begin   // Flush pipeline
-				o_InstrEn   <= 0;
+			o_Event     = 0;			
+			if (i_FlushEn == 1'b1) begin
+				// Flush pipeline
+				o_IMEM_En   <= 0;
 				o_InstrData <= 0;
-			end else begin         // Normal operation
-			   case ({i_ID_JumpEn, i_EX_BranchEn, i_StallEn})
-					2'b000 : // No jump, branch or stall
-						r_nextPC  <= o_InstrAddr + 4;	
-					2'b001 : // Stall ==================
-						r_nextPC  <= o_InstrAddr - 4;
-					2'b010 : // Branch =================
-						r_nextPC  <= i_EX_BranchAddr;
-					2'b100 : // Jump ===================
-						r_nextPC  <= i_BG_JumpAddr;
+			end else begin
+				// Normal operation
+				o_IMEM_En     = 1;
+			  case ({i_EX_Branch_En, i_StallEn})
+					2'b00 : // No branch or stall =
+						r_nextPC  = o_IMEM_Addr + 4;	
+					2'b01 : // Stall ==============
+						r_nextPC  = o_IMEM_Addr - 4;
+					2'b10 : // Branch =============
+						r_nextPC  = i_EX_Branch_Addr;
 					default: begin
-						o_Event  <= 1;
-						r_nextPC <= 0;
+						r_nextPC  = 0;
+						o_Event   = 1;
 						end
 				endcase
-				o_InstrAddr <= r_nextPC;
-				o_InstrData <= i_IMEM_InstrData;
+				// Align PC to o_IMEM_Data 
+				o_IMEM_Addr <= r_nextPC;
+				o_InstrData <= i_IMEM_Data;
+				o_PC				<= (i_StallEn) ? o_PC : o_IMEM_Addr;				
 			end
 		end
 	end

@@ -101,6 +101,4 @@
 `define FUNCT7_SLTU 7'b0000000
 `define FUNCT7_SRL  7'b0000000
 `define FUNCT7_SRA  7'b0100000
-`define FUNCT7_SRLI 7'b0000000
-`define FUNCT7_SRAI 7'b0100000
 // ===========================

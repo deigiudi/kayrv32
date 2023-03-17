@@ -80,17 +80,16 @@
 `define OP_LBU         4'b1010
 //------STORE----------OpSel--
 `define OP_SW          4'b0001
-`define OP_SH          4'b0010
-`define OP_SB          4'b0100
+`define OP_SH          4'b0100
+`define OP_SB          4'b1000
 
 
 //============================
 `define InputSel         0:0
 //--------------------InputSel
-`define IN_OP1_OP2       2'b00
-`define IN_OP1_OFF       2'b01
-`define IN_PC_OFF        2'b10
-
+`define IN_RS2_RS1       2'b00
+`define IN_IMM2_RS1      2'b10
+`define IN_IMM2_IMM1     2'b11
 
 
 //============================
