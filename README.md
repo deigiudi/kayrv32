@@ -22,8 +22,9 @@ KayRV32 is a Verilog implementation of a RISC-V RV32I based microprocessor (clas
     ├── vivado              # create and manage vivado project
     └── toolchain           # create and manage toolchain related scripts
 ├── syn             # files related to the synthesis flow
-├── tb              # basic HDL test benches
+├── tb              # test related
     └── core                # contains core level tests files
+        ├── basic                   # contains smoke tests
         ├── compliance              # official compatibility framework for RISC-V, RISCOF
         ├── risc-arch-test          # official riscv-arch-test repository
         └── risc-tests              # official riscv-tests repository
