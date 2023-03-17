@@ -1,9 +1,11 @@
 name: Lint
 on:
+  workflow_dispatch:
+  push:
   pull_request:
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest   
     steps:
     - uses: actions/checkout@master
     - uses: chipsalliance/verible-linter-action@main
