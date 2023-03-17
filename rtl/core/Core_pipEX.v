@@ -23,139 +23,166 @@
  
 `timescale 1ns / 1ps
 `include "kayrv32_defines.vh"
-`include "riscv_opcodes.vh"
+
 
 module Core_pipEX (
 	// System
 	input wire 							i_Clk,
 	input wire 							i_Rstn,
 	// From Decode Stage
-	input wire [`MemAddr  ] i_ID_PC,          // program counter	
 	input wire [`PortSel  ] i_ID_Port_sel,    // execution port selector
 	input wire [`OperSel  ] i_ID_Oper_sel,    // operation selector
 	input wire [`InputSel ] i_ID_Input_sel,   // input selector
-	input wire [`RegFAddr ] i_ID_rd_Addr,     // destination address	
-	input wire [`RegFWidth] i_ID_rs1_Data,    // operand 1 data for the ALU
-	input wire [`RegFWidth] i_ID_rs2_Data,    // operand 2 for the ALU
-	input wire [`RegFWidth] i_ID_offset,      // immediate operand
-	// Data out
+	input wire [`RegFAddr ] i_ID_rs1_Addr,    // operand 1 address
+	input wire [`RegFAddr ] i_ID_rs2_Addr,    // operand 2 address
+	input wire [`RegFAddr ] i_ID_rd_Addr,     // destination address
+	input wire              i_ID_rd_wr_en,    // destination register writeback enabler	
+	input wire [`RegFWidth] i_ID_rs1_Data,    // operand 1 data
+	input wire [`RegFWidth] i_ID_rs2_Data,    // operand 2 data
+	input wire [`RegFWidth] i_ID_imm1,        // immediate 1 operand
+	input wire [`RegFWidth] i_ID_imm2,        // immediate 2 operand
+	// Forwarding
+	input wire [`RegFWidth] i_MA_rd_Data,     // data forwarded from memory stage
+  input wire [ 1:0      ] i_CT_forward_op1, // forwarding operand 1 control signal
+  input wire [ 1:0      ] i_CT_forward_op2, // forwarding operand 2 control signal
+	// Output
 	output reg [`OperSel  ] o_Oper_sel,	      // operation selector
-	output reg [`RegFAddr ] o_rd_Addr,        // register file address
-	output reg              o_RW_En,          // write enabler
-	output reg [`MemAddr  ] o_WriteAddr,      // memmory address
-	output reg [`BusWidth ] o_WriteData,      // register file data
-	output reg              o_BranchEn,       // jump enabler
-	output reg [`PCWidth  ] o_BranchAddr,     // jump istruction address			
+	output reg [`MemAddr  ] o_rs2_Addr,       // Result address
+	output reg [`BusWidth ] o_rs2_Data,       // Computed result data
+	output reg              o_rd_wr_en,       // destination register writeback enabler
+	output reg [`RegFAddr ] o_rd_Addr,        // register destination address
+	output reg [`BusWidth ] o_rd_Data,        // Computed result data
+	output reg              o_Branch_En,      // jump enabler
+	output reg [`PCWidth  ] o_Branch_Addr,    // jump istruction address			
 	// Control IO
 	input wire							i_FlushEn,        // Flush enabler		
 	output reg              o_Event
 	);
 
+	// Input wiring for the ALU
+  wire [`RegFWidth] w_op1_data;
+  wire [`RegFWidth] w_op2_data;
+
 	always @(posedge i_Clk)
-		begin
-    // Signal passtrough =======================================================
-    assign o_Oper_sel = i_Oper_sel;	
-
-
-		// Execute cases structure =================================================
-		if (i_Rstn==1'b0 || i_Port_sel==`PORT_NOP) begin
-			o_BranchEn  <=  1'b0;
-			o_RW_En   <=  1'b0;
-			o_rd_Addr   <=  4'b0;
-			o_WriteAddr <= 32'b0;
-			o_WriteData <= 32'b0;
-			o_Event 		<=  1'b0;
+	begin
+		if (i_Rstn == 1'b0 || i_FlushEn == 1'b1) begin
+			o_Oper_sel    <=  4'b0;
+			o_rs2_Addr    <= 32'b0;
+			o_rs2_Data    <= 32'b0;
+			o_rd_wr_en    <=  1'b0;			
+			o_rd_Addr     <=  4'b0;
+			o_rd_Data     <= 32'b0;
+			o_Branch_En   <=  1'b0;
+			o_Branch_Addr <= (i_FlushEn) ? o_Branch_Addr : 32'b0;
+			o_Event 		  <=  1'b0;
 		end else begin
-			o_BranchEn   =  1'b0;
-			o_RW_En    =  1'b0;
-			o_WriteAddr  = 32'b0;
-			o_rd_Addr   <= i_rd_Addr;			
-			case (i_Port_sel)
-				`PORT_SHIFT  : begin // SHIFT =====
-					case (i_Oper_sel)
-						`OP_SLL : o_WriteData = i_rs1_Data << i_rs2_Data[4:0];
-						`OP_SRL : o_WriteData = i_rs1_Data >> i_rs2_Data[4:0];
-						`OP_SRA : o_WriteData = $signed(i_rs1_Data) >>> i_rs2_Data[4:0]; 
-						default : o_WriteData = 0;
+		  // Signal passtrough
+		  o_Oper_sel <= i_ID_Oper_sel;	
+
+			// =======================================================================
+	    // ALU source input: op1                                                ==
+	    // =======================================================================
+      case(i_CT_forward_op1)
+        // from previous cycle result
+        2'b01:   w_op1_data = o_rd_Data;
+        // from read data mem output
+        2'b10:   w_op1_data = i_MA_rd_Data;
+        // no data hazard
+        default: w_op1_data = (i_ID_Input_sel[0]) ? i_ID_imm1 : i_ID_rs1_Data;
+      endcase
+
+	    // =======================================================================
+	    // ALU source input: op2                                                ==
+	    // =======================================================================
+      case(i_CT_forward_op2)            
+        // from previous cycle result
+        2'b01:   w_op2_data = o_rd_Data;
+        // from read data mem output
+        2'b10:   w_op2_data = i_MA_rd_Data;
+        // no data hazard
+        default: w_op2_data = (i_ID_Input_sel[1]) ? i_ID_imm2 : i_ID_rs2_Data;      
+      endcase
+
+			// =======================================================================
+			// Execute logic                                                        ==
+			// =======================================================================
+		  // Signal passtrough
+			o_rs2_Addr  = i_ID_rs2_Addr;
+			o_rs2_Data  = i_ID_rs2_Data;
+			o_rd_Addr   = i_ID_rd_Addr;
+			// Default values, might be overwritten
+			o_rd_wr_en  =  1'b1;
+			o_rd_Data   = 32'b0;
+			o_Branch_En =  1'b0;			
+			case (i_ID_Port_sel)
+				// NOP ======
+				`PORT_NOP    : begin
+					o_rd_wr_en <= 1'b0;
+					o_rd_Data  <= o_rd_Data;
+					end
+				// SHIFT =====
+				`PORT_SHIFT  : begin
+					case (i_ID_Oper_sel)
+						`OP_SLL  : o_rd_Data <= w_op1_data << w_op2_data[4:0];
+						`OP_SRL  : o_rd_Data <= w_op1_data >> w_op2_data[4:0];
+						`OP_SRA  : o_rd_Data <= $signed(w_op1_data) >>> w_op2_data[4:0]; 
+						default  : o_Event <= 1'b1;
 					endcase
 				end
-				`PORT_LOGIC  : begin // LOGIC =====
-					case (i_Oper_sel)
-						`OP_AND : o_WriteData = i_rs1_Data & i_rs2_Data;
-						`OP_OR  : o_WriteData = i_rs1_Data | i_rs2_Data;												
-						`OP_XOR : o_WriteData = i_rs1_Data ^ i_rs2_Data;
-						default : o_WriteData = 0;
+				// LOGIC =====
+				`PORT_LOGIC  : begin
+					case (i_ID_Oper_sel)
+						`OP_AND  : o_rd_Data <= w_op1_data & w_op2_data;
+						`OP_OR   : o_rd_Data <= w_op1_data | w_op2_data;												
+						`OP_XOR  : o_rd_Data <= w_op1_data ^ w_op2_data;
+						default  : o_Event <= 1'b1;
 					endcase
 				end
-				`PORT_ARITH  : begin // ARITH =====
-					case (i_Oper_sel)
-						`OP_ADD  : o_WriteData = i_rs1_Data + i_rs2_Data;
-						`OP_SUB  : o_WriteData = i_rs1_Data - i_rs2_Data;
-						`OP_SLT  : o_WriteData = ($signed(i_rs1_Data) < $signed(i_rs2_Data)) ? 1:0;
-						`OP_SLTU : o_WriteData = (i_rs1_Data < i_rs2_Data) ? 1:0;
-						default  : o_WriteData = 0;
+				// ARITH =====
+				`PORT_ARITH  : begin
+					case (i_ID_Oper_sel)
+						`OP_ADD  : o_rd_Data <= w_op1_data + w_op2_data;
+						`OP_SUB  : o_rd_Data <= w_op1_data - w_op2_data;
+						`OP_SLT  : o_rd_Data <= ($signed(w_op1_data) < $signed(w_op2_data)) ? 1:0;
+						`OP_SLTU : o_rd_Data <= (w_op1_data < w_op2_data) ? 1:0;
+						default  : o_Event <= 1'b1;
 					endcase
 				end
-				`PORT_JUMP   : begin // JUMP ======
-					o_BranchEn  = 1'b1;
-					o_WriteData = i_PC+4;
-					case (i_Oper_sel)
-						`OP_JAL  : o_BranchAddr = i_rs1_Data + i_rs2_Data;
-						`OP_JALR : o_BranchAddr = i_rs1_Data - i_rs2_Data;
-						default  : begin
-							o_BranchEn    = 1'b0;
-							o_RW_En   = 1'b0;
-							o_WriteAddr = 0;
-							o_WriteData = 0;
-							o_Event     = 1;
-						end		
+				// JUMP ======
+				`PORT_JUMP   : begin
+					o_Branch_En   <= 1'b1;
+					o_Branch_Addr <= w_op1_data + w_op2_data;
+					case (i_ID_Oper_sel)
+						`OP_JAL  : o_rd_Data <= w_op1_data + 32'd4;
+						`OP_JALR : o_rd_Data <= w_op1_data + 32'd4;
+						default  : o_Event <= 1'b1;
 					endcase						
 				end
-				`PORT_BRANCH : begin // BRANCH ====
-					case (i_Oper_sel)
-		            `OP_BEQ : o_WriteData = (i_rs1_Data == i_rs2_Data) ? 1:0;
-		            `OP_BNE : o_WriteData = (i_rs1_Data == i_rs2_Data) ? 0:1;
-		            `OP_BLT : o_WriteData = ($signed(i_rs1_Data) < $signed(i_rs2_Data)) ? 1:0; 
-		            `OP_BLTU: o_WriteData = (i_rs1_Data < i_rs2_Data) ? 1:0;
-		            `OP_BGE : o_WriteData = ($signed(i_rs1_Data) >= $signed(i_rs2_Data)) ? 1:0; 
-		            `OP_BGEU: o_WriteData = (i_rs1_Data >= i_rs2_Data) ? 1:0;		            
+				// BRANCH ====
+				`PORT_BRANCH : begin
+					o_rd_wr_en    <=  1'b0;
+					o_Branch_Addr <= i_ID_imm1 + i_ID_imm2;
+					case (i_ID_Oper_sel)
+            `OP_BEQ  : o_Branch_En <= (w_op1_data == w_op2_data) ? 1:0;
+            `OP_BNE  : o_Branch_En <= (w_op1_data == w_op2_data) ? 0:1;
+            `OP_BLT  : o_Branch_En <= ($signed(w_op1_data) < $signed(w_op2_data)) ? 1:0; 
+            `OP_BLTU : o_Branch_En <= (w_op1_data < w_op2_data) ? 1:0;
+            `OP_BGE  : o_Branch_En <= ($signed(w_op1_data) >= $signed(w_op2_data)) ? 1:0; 
+            `OP_BGEU : o_Branch_En <= (w_op1_data >= w_op2_data) ? 1:0;
+            default:  o_Event <= 1'b1;
 					endcase
 				end
-				`PORT_LOAD   : begin // LOAD ======
-					o_WriteAddr = i_rs1_Data + i_offset;
-					o_WriteData = 0;
+				// LOAD ======
+				`PORT_LOAD   : begin
+					o_rd_Data <= w_op1_data + w_op2_data;
 				end
-				`PORT_STORE  : begin // STORE =====
-					o_RW_En   = 1'b1;
-					o_WriteAddr = i_rs1_Data + i_offset;
-					o_WriteData = i_rs2_Data;
+				// STORE =====
+				`PORT_STORE  : begin
+					o_rd_wr_en <= 1'b1;
+					o_rd_Addr  <= w_op1_data + w_op2_data;
+					o_rd_Data  <= i_ID_rs2_Data;
 				end
-				default:	begin
-					o_WriteAddr = 0;
-					o_WriteData = 0;
-					o_Event     = 1;
-				end		
-			endcase // end of opcodes case structure
-		end
-
-
-		// Branch Control ==========================================================
-    if(ID_branch_op_i[1]) begin
-        if(ID_jump_en_i) begin
-            EX_branch_en_o <= 0;
-        end
-        else begin
-            if(ID_branch_flag_i == 1'b0) begin
-                EX_branch_en_o <= (test_result) ? 1:0;            
-            end
-            else begin
-                EX_branch_en_o <= (test_result) ? 0:1;  
-            end
-        end 
-    end
-    else begin
-        EX_branch_en_o <= 0;
-    end 
-	end
+				default: o_Event <= 1'b1;
+			endcase // END of EXECUTE structure
 
 endmodule

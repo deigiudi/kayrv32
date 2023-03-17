@@ -23,25 +23,35 @@
 
 `timescale 1ns / 1ps
 `include "kayrv32_defines.vh"
+
  
 module Core_pipWB (
-   // From Memory Stage
-   input wire              i_MEM_RW_en,  
-   input wire              i_MEM_memtoreg,    
-   input wire [`RegFAddr ] i_MEM_rd_addr,
-   input wire [`BusWidth ] i_MEM_dataout,
-   input wire [`BusWidth ] i_MEM_aluout,
-   // To Register File
-   output reg              o_WriteEn,   
-   output reg [`RegFAddr ] o_WriteAddr,
-   output reg [`RegFWidth] o_WriteData 
+  // System
+  input wire             i_Clk,
+  input wire             i_Rstn,
+  // From Memory Stage
+  input wire              i_MA_rd_rw_en,
+  input wire [`RegFAddr ] i_MA_rd_addr,
+  input wire              i_MA_memtoreg,
+  input wire [`BusWidth ] i_MA_dataout,
+  input wire [`BusWidth ] i_MA_aluout,
+  // To Register File
+  output reg              o_rd_wr_En,   
+  output reg [`RegFAddr ] o_rd_Addr,
+  output reg [`RegFWidth] o_rd_Data 
 );
 
-   always @*
-   begin
-     o_WriteEn   = i_MEM_RW_en;      
-     o_WriteAddr = i_MEM_rd_addr;
-     o_WriteData = (i_MEM_memtoreg) ? i_MEM_data : i_MEM_aluout;
-   end
+  always@(posedge i_Clk) 
+  begin
+    if(i_Rstn==1'b0) begin
+      o_rd_wr_En <=  1'b0;
+      o_rd_Addr  <= 32'b0;
+      o_rd_Data  <= 32'b0;
+    end else begin    
+      o_rd_wr_En <= i_MA_rd_rw_en;      
+      o_rd_Addr  <= i_MA_rd_addr;
+      o_rd_Data  <= (i_MA_memtoreg) ? i_MA_dataout : i_MA_aluout;
+    end
+  end
 
 endmodule
