@@ -22,7 +22,7 @@
 */
 
 `timescale 1ns / 1ps
-`include "kayrv32_defines.vh"
+`include "kayrv32_RTL_defines.vh"
 `include "riscv_opcodes.vh"
 
 module Core_pipID (
@@ -47,7 +47,7 @@ module Core_pipID (
 	output reg [`RegFAddr ] o_rs1_Addr,    // operand 1 address for the ALU
 	output reg [`RegFAddr ] o_rs2_Addr,    // operand 2 address for the ALU
 	output reg [`RegFAddr ] o_rd_Addr,     // register destination address
-	output reg              o_rd_wr_en,    // destination register writeback enabler
+	output reg              o_rd_wr_En,    // destination register writeback enabler
 	output reg [`RegFWidth] o_rs1_Data,    // operand 1 data for the ALU
 	output reg [`RegFWidth] o_rs2_Data,    // operand 2 data for the ALU
 	output reg [`RegFWidth] o_imm1,        // immediate 1 operand
@@ -81,6 +81,8 @@ module Core_pipID (
   wire        			w_rs1_Addr_match; 
   wire        			w_rs2_Addr_match;
 	
+  integer i; // needed to reset to register file
+
 	always @(posedge i_Clk)
 	begin
 		if (i_Rstn == 1'b0 || i_FlushEn == 1'b1) begin
@@ -95,7 +97,7 @@ module Core_pipID (
 			o_rs2_Data  <= 32'b0;
       o_imm1      <= 32'b0; 
       o_imm2      <= 32'b0;
-      o_rd_wr_en  <=  1'b0;
+      o_rd_wr_En  <=  1'b0;
 			o_Event 		<=  1'b0;
 			// Register File related
 	    r_rs1_data  <= 32'b0;
@@ -115,7 +117,7 @@ module Core_pipID (
 				o_rs2_Data  <= o_rs2_Data;
 		    o_imm1      <= o_imm1; 
 		    o_imm2      <= o_imm2;
-		    o_rd_wr_en  <= o_rd_wr_en;
+		    o_rd_wr_En  <= o_rd_wr_En;
 			end else begin
 				// =====================================================================
 				// Istruction Decode logic                                            ==
@@ -128,7 +130,7 @@ module Core_pipID (
 				o_rd_Addr  =  w_rd;
 	      o_imm1     = 32'b0; 
 	      o_imm2     = 32'b0;
-	      o_rd_wr_en =  1'b0;
+	      o_rd_wr_En =  1'b0;
 				o_Event    =  1'b0;				
 				case (w_opcode)	
 					// U-type: immediate-immediate
@@ -139,7 +141,7 @@ module Core_pipID (
 						o_rs1_Addr  <=  5'b0;
 						o_rs2_Addr  <=  5'b0;
 						o_imm2      <=  w_imm_U;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;
 					end
 					// U-type: immediate-immediate					
 					`OP_AUIPC : begin
@@ -150,7 +152,7 @@ module Core_pipID (
 						o_rs2_Addr  <=  5'b0;
 						o_imm1      <=  i_IF_PC;
 						o_imm2      <=  w_imm_U;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;
 					end
 					// J-Type:
 					`OP_JAL   : begin
@@ -161,7 +163,7 @@ module Core_pipID (
 						o_rs2_Addr  <=  5'b0;
 						o_imm1      <=  i_IF_PC;
 						o_imm2      <=  w_imm_J;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;						
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;						
 					end
 					// I-Type:
 					`OP_JALR  : begin
@@ -171,7 +173,7 @@ module Core_pipID (
 						o_rs2_Addr  <=  5'b0;
 						o_imm1      <=  i_IF_PC;
 						o_imm2      <=  w_imm_I;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;
 					end
 					// B-Type: register-register
 					`OP_BRANCH: begin
@@ -196,7 +198,7 @@ module Core_pipID (
 						o_Input_sel <= `IN_IMM2_RS1;
 						o_rs2_Addr  <=  5'b0;
 						o_imm2      <=  w_imm_I;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;
 						case (w_funct3)						
 							`FUNCT3_LW : o_Oper_sel <= `OP_LW;
 							`FUNCT3_LH : o_Oper_sel <= `OP_LH;
@@ -223,7 +225,7 @@ module Core_pipID (
 						o_Input_sel <= `IN_IMM2_RS1;
 						o_rs2_Addr  <=  5'b0;	
 						o_imm2      <=  w_imm_I;
-						o_rd_wr_en  <=  (w_rd == 0)? 0 : 1;
+						o_rd_wr_En  <=  (w_rd == 0)? 0 : 1;
 						case (w_funct3)					
 							`FUNCT3_ADDI : begin
 								o_Port_sel <= `PORT_ARITH;
@@ -263,7 +265,7 @@ module Core_pipID (
 	        // R-Type: register-register
 					`OP_REGS  : begin
 						o_Input_sel <= `IN_IMM2_IMM1;
-						o_rd_wr_en  <=  1'b1;
+						o_rd_wr_En  <=  1'b1;
 						case (w_funct3)					
 							`FUNCT3_ADDSUB: begin
 								o_Port_sel <= `PORT_ARITH;
@@ -307,6 +309,9 @@ module Core_pipID (
 				// =====================================================================
 				// Register File logic                                                ==
 				// =====================================================================
+				// Always force REG0 to zero
+        r_RegFile[0] <= 0;
+
 			  // Write to Register File
 	      if((i_WB_wr_En) && (i_WB_rd_Addr != 0)) begin
 	        r_RegFile[i_WB_rd_Addr] <= i_WB_rd_Data;
@@ -322,6 +327,4 @@ module Core_pipID (
 			end
 		end
 	end
-
-  assign r_RegFile[0] = 0; // Force REG1 to zero
 endmodule

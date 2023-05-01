@@ -22,23 +22,23 @@
 */
 
 `timescale 1ns / 1ps
-`include "kayrv32_defines.vh"
+`include "kayrv32_RTL_defines.vh"
 
 
 module Core_pipIF (
 	// System
 	input wire						 i_Clk,
 	input wire             i_Rstn,
-	// Branch & Jump	
+	// Branch & Jump
 	input wire             i_EX_Branch_En,    // Branch enabler
-	input wire [`MemAddr ] i_EX_Branch_Addr,  // Branch address to new location
+	input wire [`MemAddr ] i_EX_Branch_Addr,  // Branch address
 	// Istruction Memory
-	input wire [`BusWidth] i_IMEM_Data,       // Instruction fetched from iMemory
+	input wire [`BusWidth] i_IMEM_Data,       // Instruction fetched
 	output reg             o_IMEM_En,         // Instruction read enabler
-	output reg [`MemAddr ] o_IMEM_Addr,       // Instruction address to iMemory
+	output reg [`MemAddr ] o_IMEM_Addr,       // Instruction address
 	// Output
-	output reg [`BusWidth] o_InstrData,       // Instruction data to decode
-	output reg [`MemAddr ] o_PC,              // Program counter to decode	
+	output reg [`MemAddr ] o_PC,              // Program counter
+	output reg [`BusWidth] o_Instr,           // Instruction data2
 	// Control IO
 	input wire             i_StallEn,         // Stall enabler
 	input wire             i_FlushEn,         // Flush enabler
@@ -54,15 +54,15 @@ module Core_pipIF (
 	  	// Reset is active
 			o_IMEM_En   <= 1;
 			o_IMEM_Addr <= 0;
-			o_InstrData <= 0;			
+			o_Instr     <= 0;
 			o_PC				<= 0;
-			o_Event			<= 0;			
+			o_Event			<= 0;
 		end else begin
 			o_Event     = 0;			
 			if (i_FlushEn == 1'b1) begin
 				// Flush pipeline
 				o_IMEM_En   <= 0;
-				o_InstrData <= 0;
+				o_Instr <= 0;
 			end else begin
 				// Normal operation
 				o_IMEM_En     = 1;
@@ -80,7 +80,7 @@ module Core_pipIF (
 				endcase
 				// Align PC to o_IMEM_Data 
 				o_IMEM_Addr <= r_nextPC;
-				o_InstrData <= i_IMEM_Data;
+				o_Instr     <= i_IMEM_Data;
 				o_PC				<= (i_StallEn) ? o_PC : o_IMEM_Addr;				
 			end
 		end

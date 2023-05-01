@@ -14,44 +14,71 @@
 -- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE  -
 -- POSSIBILITY OF SUCH DAMAGE.                                                 -
 --------------------------------------------------------------------------------
--- Project     : KayRV32
--- Function    : Writeback stage
--- Description : A combinatorial control block to select data either to be 
-                 written in the register file from data memory or ALU output
+-- Project : KayRV32 Basic Testbench
+-- Function: Shared hardware definitions in testbench
 --------------------------------------------------------------------------------
 */
 
-`timescale 1ns / 1ps
-`include "kayrv32_defines.vh"
+// ===============
+// JUMPS        ==
+// ===============
+`define J_JAL    1
+`define J_JALR   2
 
- 
-module Core_pipWB (
-  // System
-  input wire             i_Clk,
-  input wire             i_Rstn,
-  // From Memory Stage
-  input wire              i_MA_rd_rw_en,
-  input wire [`RegFAddr ] i_MA_rd_addr,
-  input wire              i_MA_memtoreg,
-  input wire [`BusWidth ] i_MA_dataout,
-  input wire [`BusWidth ] i_MA_aluout,
-  // To Register File
-  output reg              o_rd_wr_En,   
-  output reg [`RegFAddr ] o_rd_Addr,
-  output reg [`RegFWidth] o_rd_Data 
-);
+// ===============
+// BRANCHES     ==
+// ===============
+`define B_BEQ    3
+`define B_BNE    4
+`define B_BLT    5
+`define B_BGE    6
+`define B_BLTU   7
+`define B_BGEU   8
 
-  always@(posedge i_Clk) 
-  begin
-    if(i_Rstn==1'b0) begin
-      o_rd_wr_En <=  1'b0;
-      o_rd_Addr  <= 32'b0;
-      o_rd_Data  <= 32'b0;
-    end else begin    
-      o_rd_wr_En <= i_MA_rd_rw_en;      
-      o_rd_Addr  <= i_MA_rd_addr;
-      o_rd_Data  <= (i_MA_memtoreg) ? i_MA_dataout : i_MA_aluout;
-    end
-  end
+// ===============
+// LOADS        ==
+// ===============
+`define L_LB     9
+`define L_LH    10
+`define L_LW    11
+`define L_LBU   12
+`define L_LHU   13
 
-endmodule
+// ===============
+// STORES       ==
+// ===============
+`define S_SB    14
+`define S_SH    15
+`define S_SW    16
+
+// ===============
+// Immediate    ==
+// ===============
+`define I_ADDI  17
+`define I_ANDI  18
+`define I_ORI   19
+`define I_XORI  20
+`define I_SLTI  21
+`define I_SLLI  22
+`define I_SRLI  23
+`define I_SRAI  24
+
+// ===============
+// Upper Immediate
+// ===============
+`define U_LUI   25
+`define U_AUIPC 26
+
+// ===============
+// Register based
+// ===============
+`define R_ADD   27
+`define R_SUB   28
+`define R_AND   29
+`define R_OR    30
+`define R_XOR   31
+`define R_SLT   32
+`define R_SLTU  32
+`define R_SLL   33
+`define R_SRL   34
+`define R_SRA   35

@@ -15,7 +15,7 @@
 -- POSSIBILITY OF SUCH DAMAGE.                                                 -
 --------------------------------------------------------------------------------
 -- Project : KayRV32
--- Function: Shared hardware definitions in the project
+-- Function: Shared hardware definitions in the RTL
 --------------------------------------------------------------------------------
 */
 
@@ -90,12 +90,3 @@
 `define IN_RS2_RS1       2'b00
 `define IN_IMM2_RS1      2'b10
 `define IN_IMM2_IMM1     2'b11
-
-
-//============================
-// DECODE STAGE             ==
-//============================
-
-//============================
-// MEMORY STAGE             ==
-//============================

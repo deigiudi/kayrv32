@@ -28,13 +28,12 @@ module DataMem #(
 	input wire 			i_Clk,
 
 	// Data
-	input wire 			i_ReadEn,
-	input wire 			i_WriteEn,
-	input wire [31:0] i_AddrWrite,
-	input wire [31:0] i_DataWrite,
-	input wire [31:0] i_AddrRead,	
-	output reg [31:0] o_AddrRead,
-	output reg [31:0] o_DataRead
+	input wire 			  i_WriteEn,
+	input wire [31:0] i_Write_Addr,
+	input wire [31:0] i_Write_Data,
+	input wire 		   	i_ReadEn,
+	input wire [31:0] i_Read_Addr,
+	output reg [31:0] o_Read_Data
 	);
 	
 	reg [31:0] r_DataMem[0:BYTESIZE-1]; 	// X words of 32-bit
@@ -44,15 +43,14 @@ module DataMem #(
 	begin
 		// Read
 		if (i_ReadEn) begin
-			o_AddrRead <= i_AddrRead;
-			o_DataRead <= r_DataMem[i_AddrRead];
+			o_Read_Data <= r_DataMem[i_Read_Addr];
 		end else begin
-			o_DataRead <= 32'd0;
+			o_Read_Data <= 32'd0;
       end
       
 		// Write
 		if (i_WriteEn) begin
-			r_DataMem[i_AddrWrite] <= i_DataWrite;
+			r_DataMem[i_Write_Addr] <= i_Write_Data;
 		end	
 	end	
 	

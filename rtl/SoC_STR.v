@@ -39,11 +39,11 @@ wire [`MemAddr  ] w_Instr_Addr;
 wire [`BusWidth ] w_Instr_Data;
 
 // DataMem <=> Core
-wire              w_Data_ReadEn;
-wire              w_Data_WriteEn;
-wire [`BusWidth ] w_Data_Read;
-wire [`BusWidth ] w_Data_Write;
+wire [`BusWidth ] w_Read_Data;
+wire [`BusWidth ] w_Write_Data;
 wire [`MemAddr  ] w_Data_Addr;
+wire              w_Read_En;
+wire              w_Write_En;
 
 // --------------
 // Instances ----
@@ -52,13 +52,13 @@ clk_wiz Clk_gen (
 	// System
 	.clk_in1(sys_Clk),
 	.clk_out1(w_Clk),
-	.reset(sys_Rst)
+	.reset(sys_Rstn)
 	);
 
 Core_STR Core (
 	// System
 	.i_Clk(w_Clk),												
-	.i_Rstn(sys_Rst),											
+	.i_Rstn(sys_Rstn),											
 
 	// IBUS	
 	.o_iMem_En(w_Instr_ReadEn),	
@@ -66,11 +66,11 @@ Core_STR Core (
 	.i_iMem_Data(w_Instr_Data),	
 
 	// DBUS
-	.i_dMEM_Data_read(w_Data_Read),	
-	.o_dMEM_Data_write(w_Data_Write),
-	.o_dMEM_Addr(w_Data_Addr),
-	.o_dMEM_ReadEn(w_Data_ReadEn),
-	.o_dMEM_WriteEn(w_Data_WriteEn),	
+	.i_dMEM_Read_Data(w_Read_Data),	
+	.o_dMEM_Addr(w_Data_Addr),	
+	.o_dMEM_ReadEn(w_Read_En),	
+	.o_dMEM_WriteEn(w_Write_En),
+	.o_dMEM_Write_Data(w_Write_Data),
 
 	// CPU Signals
 	.o_Interrupt(sys_Interrupt),
@@ -85,19 +85,20 @@ InstrMem #(.BYTESIZE(1024),
 	// Data
 	.i_ReadEn(w_Instr_ReadEn),
 	.i_ReadAddr(w_Instr_Addr),
-	.i_ReadData(w_Instr_Data)
+	.o_ReadData(w_Instr_Data)
 	);
 
 DataMem #(.BYTESIZE(1024)) dMem (
 	// System
-	.p_Clk(w_Clk),
+	.i_Clk(w_Clk),
 
 	// Data
-	.p_ReadEn_In(w_Data_ReadEn),
-	.p_WriteEn_In(w_Data_WriteEn),
-	.p_Addr_In(w_Data_Addr),
-	.p_DataWrite_In(w_Data_Write),
-	.p_DataRead_Out(w_Data_Read)
+	.i_WriteEn(w_Write_En),
+	.i_Write_Addr(w_Data_Addr),
+	.i_Write_Data(w_Write_Data),
+	.i_ReadEn(w_Read_En),	
+	.i_Read_Addr(w_Data_Addr),
+	.o_Read_Data(w_Read_Data)
 	);
 
 endmodule
