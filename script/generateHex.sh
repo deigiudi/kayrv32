@@ -3,7 +3,7 @@ shopt -s extglob
 
 # This is a script to compile and link the assembly tests from riscv-tests and
 # then generate a dump and memory configuration file for each test. 
-#
+# Depedency: riscv32-unknown-elf-elf2hex
 
 
 WORKINGDIR=pwd
